@@ -1,9 +1,9 @@
-%define		snapshot	20020123
+%define		snapshot	20020204
 Summary:	A client compatible with Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	0.9.0.%{snapshot}
-Release:	2
+Release:	1
 License:	GPL
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
@@ -23,9 +23,9 @@ A client compatible with Gadu-Gadu.
 %description -l pl
 Eksperymentalny Klient Gadu-Gadu.
 
-%package -n libgg
-Summary:	libgg library
-Summary(pl):	Biblioteka libgg
+%package -n libgadu
+Summary:	libgadu library
+Summary(pl):	Biblioteka libgadu
 Group:		Libraries
 Group(de):	Libraries
 Group(es):	Bibliotecas
@@ -35,17 +35,17 @@ Group(pt_BR):	Bibliotecas
 Group(ru):	‚…¬Ã…œ‘≈À…
 Group(uk):	‚¶¬Ã¶œ‘≈À…
 
-%description -n libgg
-libgg is intended to make it easy to add Gadu-Gadu communication
+%description -n libgadu
+libgadu is intended to make it easy to add Gadu-Gadu communication
 support to your software.
 
-%description -n libgg -l pl
-libgg umoøliwia ≥atwe dodanie do rÛønych aplikacji komunikacji
+%description -n libgadu -l pl
+libgadu umoøliwia ≥atwe dodanie do rÛønych aplikacji komunikacji
 bazuj±cej na protokole Gadu-Gadu.
 
-%package -n libgg-devel
-Summary:	libgg library development
-Summary(pl):	CzÍ∂Ê biblioteki libgg dla programistÛw
+%package -n libgadu-devel
+Summary:	libgadu library development
+Summary(pl):	CzÍ∂Ê biblioteki libgadu dla programistÛw
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(es):	Desarrollo/Bibliotecas
@@ -54,19 +54,19 @@ Group(pl):	Programowanie/Biblioteki
 Group(pt_BR):	Desenvolvimento/Bibliotecas
 Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
 Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
-Requires:	libgg
+Requires:	libgadu
 
-%description -n libgg-devel
-The libgg-devel package contains the header files and some
-documentation needed to develop application with libgg.
+%description -n libgadu-devel
+The libgadu-devel package contains the header files and some
+documentation needed to develop application with libgadu.
 
-%description -n libgg-devel -l pl
-Pakiet libgg-devel zawiera pliki nag≥Ûwkowe i dokumentacjÍ, potrzebne
-do kompilowania aplikacji korzystaj±cych z libgg.
+%description -n libgadu-devel -l pl
+Pakiet libgadu-devel zawiera pliki nag≥Ûwkowe i dokumentacjÍ,
+potrzebne do kompilowania aplikacji korzystaj±cych z libgadu.
 
-%package -n libgg-static
-Summary:	Static libgg Library
-Summary(pl):	Statyczna biblioteka libgg
+%package -n libgadu-static
+Summary:	Static libgadu Library
+Summary(pl):	Statyczna biblioteka libgadu
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(es):	Desarrollo/Bibliotecas
@@ -75,13 +75,13 @@ Group(pl):	Programowanie/Biblioteki
 Group(pt_BR):	Desenvolvimento/Bibliotecas
 Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
 Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
-Requires:	libgg-devel
+Requires:	libgadu-devel
 
-%description -n libgg-static
-Static libgg library.
+%description -n libgadu-static
+Static libgadu library.
 
-%description -n libgg-static -l pl
-Statyczna biblioteka libgg.
+%description -n libgadu-static -l pl
+Statyczna biblioteka libgadu.
 
 %prep
 %setup -q -n %{name}-%{snapshot}
@@ -95,18 +95,16 @@ autoconf
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_includedir},%{_libdir}} \
-	$RPM_BUILD_ROOT{%{_mandir}/{,pl/}man1,%{_datadir}/ekg}
+	$RPM_BUILD_ROOT{%{_mandir}/{,pl/}man1,%{_datadir}/ekg/themes}
 
 install src/ekg $RPM_BUILD_ROOT%{_bindir}
-install lib/libgg.h $RPM_BUILD_ROOT%{_includedir}
-install lib/libgg.a $RPM_BUILD_ROOT%{_libdir}
-install lib/libgg.so.* $RPM_BUILD_ROOT%{_libdir}
-( 
-  cd $RPM_BUILD_ROOT%{_libdir}
-  ln -s libgg.so.* libgg.so 
-)
+install src/ioctl_daemon $RPM_BUILD_ROOT%{_bindir}
+install docs/ekl.pl $RPM_BUILD_ROOT%{_bindir}
+install lib/libgadu.h $RPM_BUILD_ROOT%{_includedir}
+install lib/libgadu.a $RPM_BUILD_ROOT%{_libdir}
+install lib/libgadu.so.* $RPM_BUILD_ROOT%{_libdir}
 
-install themes/*.theme $RPM_BUILD_ROOT%{_datadir}/ekg
+install themes/*.theme $RPM_BUILD_ROOT%{_datadir}/ekg/themes
 
 install docs/ekg.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekg.1
 install docs/ekg.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekg.1
@@ -116,27 +114,27 @@ gzip -9nf ChangeLog docs/*
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -n libgg -p /sbin/ldconfig
-%postun -n libgg -p /sbin/ldconfig
+%post -n libgadu -p /sbin/ldconfig
+%postun -n libgadu -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/e*
+%attr(4755,root,root) %{_bindir}/ioctl_daemon
 %{_datadir}/ekg
-%doc docs/{7thguard,dcc,themes,vars}.txt.gz
-%doc ChangeLog.gz docs/{FAQ,README,TODO,ekl.pl}.gz
+%doc docs/{7thguard,dcc,on,themes,vars}.txt.gz
+%doc ChangeLog.gz docs/{FAQ,README,TODO}.gz
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
 
-%files -n libgg
-%attr(755,root,root) %{_libdir}/libgg.so.*
+%files -n libgadu
+%attr(755,root,root) %{_libdir}/libgadu.so.*
 
-%files -n libgg-devel
+%files -n libgadu-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgg.so
-%{_includedir}/libgg.h
-%doc docs/{7thguard,api,protocol}.txt.gz
+%{_includedir}/libgadu.h
+%doc docs/{7thguard,api,devel-hints,protocol}.txt.gz
 %doc ChangeLog.gz docs/{README,TODO}.gz
 
-%files -n libgg-static
-%attr(644,root,root) %{_libdir}/libgg.a
+%files -n libgadu-static
+%attr(644,root,root) %{_libdir}/libgadu.a

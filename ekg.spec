@@ -11,7 +11,7 @@ Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.4
-Release:	3
+Release:	4
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
@@ -25,7 +25,7 @@ BuildRequires:	automake
 %{?with_voip:BuildRequires:	libgsm-devel}
 BuildRequires:	libjpeg-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	openssl-devel >= 0.9.7c
+BuildRequires:	openssl-devel >= 0.9.6k
 BuildRequires:	%{_bindir}/perl
 %{?with_python:BuildRequires:	python-devel}
 BuildRequires:	readline-devel

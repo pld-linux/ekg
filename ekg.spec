@@ -123,7 +123,7 @@ Statyczna biblioteka libgadu.
 
 %build
 rm -f missing
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoheader}
 %{__autoconf}
 %configure \

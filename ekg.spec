@@ -4,20 +4,18 @@
 # _with_python          - with python support
 # _with_voip	        - with voip support (libgsm)
 
-%define		_rc	rc2
-
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	1.1
-Release:	0.%{_rc}.1
+Release:	1
 Epoch:		3
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://dev.null.pl/ekg/%{name}-%{version}%{_rc}.tar.gz
-# Source0-md5:	69ba4b621b1d1afbd1ac6f4197778b2a
+Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
+# Source0-md5:	dfcc114d41a942b774b26143c509d90f
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
@@ -101,7 +99,7 @@ Statisches libgadu Archiv.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q -n %{name}-%{version}%{_rc}
+%setup -q -n %{name}-%{version}
 
 %build
 rm -f missing

@@ -11,7 +11,7 @@ Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	1.0
 Release:	2rc3
-Epoch:		2
+Epoch:		3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{version}rc3.tar.gz

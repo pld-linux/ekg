@@ -135,8 +135,8 @@ rm -f missing
 	--with-pthread \
 	--without-bind \
 	%{?with_python:--with-python} \
-	%{?without_voip:--without-libgsm} \
-	%{?without_ioctl_daemon:--disable-ioctld}
+	%{!?with_voip:--without-libgsm} \
+	%{!?with_ioctl_daemon:--disable-ioctld}
 
 %{__make} \
 	CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"

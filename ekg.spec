@@ -1,8 +1,8 @@
 #
 # Conditional build:
+%bcond_without	aspell		# without spell checking
 %bcond_without	voip		# without VoIP support
-%bcond_without	aspell		# without spell checking feature
-%bcond_with	python		# with python support
+%bcond_without	python		# with python support
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
 #
 Summary:	A client compatible with Gadu-Gadu
@@ -11,15 +11,16 @@ Summary(es):	Un cliente compatible con Gadu-Gadu
 Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
-Version:	1.4
-%define _snap	20040306
-Release:	5.%{_snap}
+Version:	1.6
+%define	_snap	20050112
+Release:	0.%{_snap}
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{_snap}.tar.gz
-# Source0-md5:	a1744c77bf3a79b9b39ad36564e2b310
+# Source0-md5:	c7c2f7d581df85800de7398888aafd5d
 Source1:	%{name}.conf
+#Patch0:		%{name}-kadu-0_3_6.patch
 URL:		http://dev.null.pl/ekg/
 %{?with_aspell:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
@@ -27,7 +28,7 @@ BuildRequires:	automake
 %{?with_voip:BuildRequires:	libgsm-devel}
 BuildRequires:	libjpeg-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	openssl-devel >= 0.9.7c
+BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	%{_bindir}/perl
 %{?with_python:BuildRequires:	python-devel}
 BuildRequires:	readline-devel
@@ -79,7 +80,7 @@ Summary(es):	Biblioteca de desarrollo de libgadu
 Summary(pl):	Czê¶æ biblioteki libgadu dla programistów
 License:	LGPL v2.1
 Group:		Development/Libraries
-Requires:	libgadu = %{epoch}:%{version}
+Requires:	libgadu = %{epoch}:%{version}-%{release}
 Requires:	openssl-devel
 Obsoletes:	libgg-devel
 
@@ -107,7 +108,7 @@ Summary(es):	Biblioteca libgadu estática
 Summary(pl):	Statyczna biblioteka libgadu
 License:	LGPL v2.1
 Group:		Development/Libraries
-Requires:	libgadu-devel = %{epoch}:%{version}
+Requires:	libgadu-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	libgg-static
 
 %description -n libgadu-static
@@ -124,6 +125,7 @@ Statyczna biblioteka libgadu.
 
 %prep
 %setup -q -n %{name}-%{_snap}
+#%%patch0 -p1
 
 %build
 rm -f missing
@@ -137,11 +139,11 @@ rm -f missing
 	--without-bind \
 	%{?with_python:--with-python} \
 	%{!?with_voip:--without-libgsm} \
-	%{!?with_ioctl_daemon:--disable-ioctld} \
-	%{?with_aspell:--enable-aspell}
+	%{?with_aspell:--enable-aspell} \
+	%{!?with_ioctl_daemon:--disable-ioctld}
 
 %{__make} \
-	CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"
+	CC="%{__cc} %{rpmcflags} -Wall -I%{_includedir}/ncurses"
 
 %if %{with ioctl_daemon}
 %{__make} -C src ioctld
@@ -158,11 +160,11 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
 
 # For libgadu-devel
 
-rm examples/Makefile examples/Makefile.in examples/.cvsignore
-rm -r examples/CVS
+rm -f examples/Makefile examples/Makefile.in examples/.cvsignore
+rm -rf examples/CVS
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/libgadu-%{version}
-mv examples/* $RPM_BUILD_ROOT%{_examplesdir}/libgadu-%{version}
+cp -af examples/* $RPM_BUILD_ROOT%{_examplesdir}/libgadu-%{version}
 
 %if %{with ioctl_daemon}
 install src/ioctld $RPM_BUILD_ROOT%{_bindir}
@@ -180,6 +182,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc docs/{7thguard,dcc,files,gdb,python,sim,themes,ui-ncurses,vars,voip}.txt
+%{?with_aspell:%doc docs/slownik.txt}
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
 %attr(755,root,root) %{_bindir}/e*
 %{?with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}
@@ -196,13 +199,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc docs/{7thguard,ui,devel-hints,przenosny-kod}.txt docs/protocol.html
 %doc ChangeLog docs/{README,TODO}
-%{_libdir}/libgadu.so
+%attr(755,root,root) %{_libdir}/libgadu.so
 %{_includedir}/libgadu.h
 %{_includedir}/libgadu-config.h
 %{_pkgconfigdir}/*
-%dir %{_examplesdir}/libgadu-%{version}
-%{_examplesdir}/libgadu-%{version}/*
+%{_examplesdir}/libgadu-%{version}
 
 %files -n libgadu-static
 %defattr(644,root,root,755)
-%attr(644,root,root) %{_libdir}/libgadu.a
+%{_libdir}/libgadu.a

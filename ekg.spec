@@ -1,7 +1,9 @@
-%bcond_without	voip
-%bcond_with	python
-%bcond_with	ioctl_daemon
-
+#
+# Conditional build:
+%bcond_without	voip		# without VoIP support
+%bcond_with	python		# with python support
+%bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
+#
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Ein Cliente kompatibel mit Gadu-Gadu
 Summary(es):	Un cliente compatible con Gadu-Gadu
@@ -9,7 +11,7 @@ Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.4
-Release:	2
+Release:	4
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
@@ -23,7 +25,7 @@ BuildRequires:	automake
 %{?with_voip:BuildRequires:	libgsm-devel}
 BuildRequires:	libjpeg-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	openssl-devel >= 0.9.7c
+BuildRequires:	openssl-devel >= 0.9.6k
 BuildRequires:	%{_bindir}/perl
 %{?with_python:BuildRequires:	python-devel}
 BuildRequires:	readline-devel
@@ -49,9 +51,9 @@ Klient kompatybilny z Gadu-Gadu.
 Summary:	libgadu library
 Summary(es):	Biblioteca libgadu
 Summary(pl):	Biblioteka libgadu
+License:	LGPL v2.1
 Group:		Libraries
 Obsoletes:	libgg
-License:	LGPL v2.1
 
 %description -n libgadu
 libgadu is intended to make it easy to add Gadu-Gadu communication
@@ -73,10 +75,11 @@ bazuj±cej na protokole Gadu-Gadu.
 Summary:	libgadu development library
 Summary(es):	Biblioteca de desarrollo de libgadu
 Summary(pl):	Czê¶æ biblioteki libgadu dla programistów
+License:	LGPL v2.1
 Group:		Development/Libraries
 Requires:	libgadu = %{epoch}:%{version}
+Requires:	openssl-devel
 Obsoletes:	libgg-devel
-License:	LGPL
 
 %description -n libgadu-devel
 The libgadu-devel package contains the header files and some
@@ -100,10 +103,10 @@ potrzebne do kompilowania aplikacji korzystaj±cych z libgadu.
 Summary:	Static libgadu library
 Summary(es):	Biblioteca libgadu estática
 Summary(pl):	Statyczna biblioteka libgadu
+License:	LGPL v2.1
 Group:		Development/Libraries
 Requires:	libgadu-devel = %{epoch}:%{version}
 Obsoletes:	libgg-static
-License:	LGPL
 
 %description -n libgadu-static
 Static libgadu library.
@@ -123,7 +126,7 @@ Statyczna biblioteka libgadu.
 
 %build
 rm -f missing
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoheader}
 %{__autoconf}
 %configure \
@@ -132,14 +135,14 @@ rm -f missing
 	--with-pthread \
 	--without-bind \
 	%{?with_python:--with-python} \
-	%{?!with_voip:--without-libgsm} \
-	%{?!with_ioctl_daemon:--disable-ioctld}
-%{__make} CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"
+	%{!?with_voip:--without-libgsm} \
+	%{!?with_ioctl_daemon:--disable-ioctld}
+
+%{__make} \
+	CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"
 
 %if %{with ioctl_daemon}
-cd src
-%{__make} ioctld
-cd ..
+%{__make} -C src ioctld
 %endif
 
 %install
@@ -149,7 +152,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 %{__make} install install-ekl2 \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
 
 # For libgadu-devel
 
@@ -157,7 +160,7 @@ rm examples/Makefile examples/Makefile.in examples/.cvsignore
 rm -r examples/CVS
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/libgadu-%{version}
-mv examples/* $RPM_BUILD_ROOT%{_examplesdir}/libgadu-%{version}/
+mv examples/* $RPM_BUILD_ROOT%{_examplesdir}/libgadu-%{version}
 
 %if %{with ioctl_daemon}
 install src/ioctld $RPM_BUILD_ROOT%{_bindir}

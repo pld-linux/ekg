@@ -2,25 +2,26 @@
 # Conditional build:
 # _with_ioctl_daemon    - with ioctl_daemon (suid-root!)
 # _with_python          - with python support
-# _without_voip	        - without voip support
+# _with_voip	        - with voip support (libgsm)
 #
+%define		snapshot 20030521
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	1.0
-Release:	3
-Epoch:		3
+Version:	1.0.%{snapshot}
+Release:	1
+Epoch:		4
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
-# Source0-md5: 53b9a686b8df126e3c44df620e05abac
+Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz
+# Source0-md5: 7050263dc0b5446bf8abf6ec32eebacc
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?!_without_voip:BuildRequires: libgsm-devel}
+%{?_with_voip:BuildRequires: libgsm-devel}
 BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	%{_bindir}/perl
@@ -99,7 +100,7 @@ Statisches libgadu Archiv.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q 
+%setup -q -n %{name}-%{snapshot}
 
 %build
 %{__aclocal}
@@ -110,7 +111,7 @@ Statyczna biblioteka libgadu.
 	--enable-static \
 	--with-pthread \
 	%{?_with_python:--with-python} \
-	%{?_without_voip:--without-libgsm} \
+	%{?_with_voip:--with-libgsm} \
 	%{?!_with_ioctl_daemon:--disable-ioctld}
 %{__make}
 
@@ -128,13 +129,8 @@ cd ..
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install install-ekl2 DESTDIR=$RPM_BUILD_ROOT
 
-# From 20020310 can be replaced by ,,make install-ekl2''
-install contrib/ekl2.pl $RPM_BUILD_ROOT%{_bindir}
-install contrib/ekl2.sh $RPM_BUILD_ROOT%{_bindir}
-install docs/ekl2.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekl2.1
-install docs/ekl2.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekl2.1
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/
 
 # For libgadu-devel

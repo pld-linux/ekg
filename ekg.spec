@@ -134,8 +134,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/
 rm examples/Makefile examples/Makefile.in examples/.cvsignore
 rm -r examples/CVS
 
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-mv examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/
+install -d $RPM_BUILD_ROOT%{_examplesdir}/libgadu-%{version}
+mv examples/* $RPM_BUILD_ROOT%{_examplesdir}/libgadu-%{version}/
 
 %if %{with ioctl_daemon}
 install src/ioctld $RPM_BUILD_ROOT%{_bindir}
@@ -173,8 +173,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/libgadu.h
 %{_includedir}/libgadu-config.h
 %{_pkgconfigdir}/*
-%dir %{_examplesdir}/%{name}-%{version}
-%{_examplesdir}/%{name}-%{version}/*
+%dir %{_examplesdir}/libgadu-%{version}
+%{_examplesdir}/libgadu-%{version}/*
 
 %files -n libgadu-static
 %defattr(644,root,root,755)

@@ -1,0 +1,6 @@
+- update to 20030130
+- --with-debug is always (F12)
+- use global config /etc/ekg.conf with all gg-servers
+- default theme irc.theme
+- autoconf & autoheader
+- requiest zlib-devel && openssl-devel

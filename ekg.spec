@@ -132,6 +132,10 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/
 # For libgadu-devel
 
 rm examples/Makefile examples/Makefile.in examples/.cvsignore
+rm -r examples/CVS
+
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+mv examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/
 
 %if %{with ioctl_daemon}
 install src/ioctld $RPM_BUILD_ROOT%{_bindir}
@@ -164,11 +168,13 @@ rm -rf $RPM_BUILD_ROOT
 %files -n libgadu-devel
 %defattr(644,root,root,755)
 %doc docs/{7thguard,ui,devel-hints,przenosny-kod}.txt docs/protocol.html
-%doc ChangeLog docs/{README,TODO} examples
+%doc ChangeLog docs/{README,TODO}
 %{_libdir}/libgadu.so
 %{_includedir}/libgadu.h
 %{_includedir}/libgadu-config.h
 %{_pkgconfigdir}/*
+%dir %{_examplesdir}/%{name}-%{version}
+%{_examplesdir}/%{name}-%{version}/*
 
 %files -n libgadu-static
 %defattr(644,root,root,755)

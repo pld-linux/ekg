@@ -3,7 +3,6 @@
 # _with_ioctl_daemon    - with ioctl_daemon (suid-root!)
 # _with_python          - with python support
 # _with_voip	        - with voip support (libgsm)
-#
 
 %define		_rc	rc2
 
@@ -132,7 +131,8 @@ cd ..
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
-%{__make} install install-ekl2 DESTDIR=$RPM_BUILD_ROOT
+%{__make} install install-ekl2 \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/
 

@@ -1,5 +1,6 @@
 #
 # Conditional build:
+%bcond_without	aspell		# without spell checking
 %bcond_without	voip		# without VoIP support
 %bcond_with	python		# with python support
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
@@ -13,7 +14,7 @@ Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.5
-Release:	0.%{snap}.1
+Release:	0.%{snap}.2
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
@@ -22,6 +23,7 @@ Source0:	http://dev.null.pl/ekg/%{name}-%{snap}.tar.gz
 Source1:	%{name}.conf
 Patch0:		%{name}-kadu-0_3_6.patch
 URL:		http://dev.null.pl/ekg/
+%{?with_aspell:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_voip:BuildRequires:	libgsm-devel}
@@ -140,6 +142,7 @@ rm -f missing
 	--without-bind \
 	%{?with_python:--with-python} \
 	%{!?with_voip:--without-libgsm} \
+	%{?with_aspell:--enable-aspell} \
 	%{!?with_ioctl_daemon:--disable-ioctld}
 
 %{__make} \

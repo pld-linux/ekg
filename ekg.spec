@@ -127,8 +127,6 @@ Statyczna biblioteka libgadu.
 #%patch0 -p1
 
 %build
-sed -i -e 's/#define.*GG_LIBGADU_VERSION.*/#define GG_LIBGADU_VERSION "%{version}.%{snap}"/g' lib/libgadu.h
-
 rm -f missing
 %{__aclocal} -I m4
 %{__autoheader}

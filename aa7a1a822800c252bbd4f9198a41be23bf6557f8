@@ -1,0 +1,7 @@
+- release 2 - the source has been modified...
+- removed unneeded installs (ekg{search}*man*)
+- introducing: ref.functions.html - list off all functions generated
+  automagiclly from current sources each build (propably it need fix, i
+  don't know is that the way it should be done)
+- please rebuild all packages that requires libgadu (perl-Net-Gadu fe.)
+  because so file version has been changed

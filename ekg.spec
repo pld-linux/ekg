@@ -14,7 +14,7 @@ Release:	3
 Epoch:		1
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
+Source0:	http://dev.null.pl/ekg/archive/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf

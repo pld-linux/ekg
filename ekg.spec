@@ -9,7 +9,7 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	20030208
+Version:	20030211
 Release:	3
 Epoch:		1
 License:	GPL
@@ -154,7 +154,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
 %{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}
 %{_datadir}/ekg
-%{_datadir}/ekg/vars.txt
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
 

@@ -5,7 +5,6 @@
 %bcond_with	python		# with python support
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
 #
-
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Ein Cliente kompatibel mit Gadu-Gadu
 Summary(es):	Un cliente compatible con Gadu-Gadu
@@ -80,7 +79,7 @@ Summary(es):	Biblioteca de desarrollo de libgadu
 Summary(pl):	Czê¶æ biblioteki libgadu dla programistów
 License:	LGPL v2.1
 Group:		Development/Libraries
-Requires:	libgadu = %{epoch}:%{version}
+Requires:	libgadu = %{epoch}:%{version}-%{release}
 Requires:	openssl-devel
 Obsoletes:	libgg-devel
 
@@ -108,7 +107,7 @@ Summary(es):	Biblioteca libgadu estática
 Summary(pl):	Statyczna biblioteka libgadu
 License:	LGPL v2.1
 Group:		Development/Libraries
-Requires:	libgadu-devel = %{epoch}:%{version}
+Requires:	libgadu-devel = %{epoch}:%{version}-%{release}
 Obsoletes:	libgg-static
 
 %description -n libgadu-static
@@ -124,7 +123,7 @@ Biblioteca libgadu estática.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 #%patch0 -p1
 
 %build
@@ -162,11 +161,11 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
 
 # For libgadu-devel
 
-rm examples/Makefile examples/Makefile.in examples/.cvsignore
-rm -r examples/CVS
+rm -f examples/Makefile examples/Makefile.in examples/.cvsignore
+rm -rf examples/CVS
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/libgadu-%{version}
-mv examples/* $RPM_BUILD_ROOT%{_examplesdir}/libgadu-%{version}
+cp -af examples/* $RPM_BUILD_ROOT%{_examplesdir}/libgadu-%{version}
 
 %if %{with ioctl_daemon}
 install src/ioctld $RPM_BUILD_ROOT%{_bindir}
@@ -201,13 +200,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc docs/{7thguard,ui,devel-hints,przenosny-kod}.txt docs/protocol.html
 %doc ChangeLog docs/{README,TODO}
-%{_libdir}/libgadu.so
+%attr(755,root,root) %{_libdir}/libgadu.so
 %{_includedir}/libgadu.h
 %{_includedir}/libgadu-config.h
 %{_pkgconfigdir}/*
-%dir %{_examplesdir}/libgadu-%{version}
-%{_examplesdir}/libgadu-%{version}/*
+%{_examplesdir}/libgadu-%{version}
 
 %files -n libgadu-static
 %defattr(644,root,root,755)
-%attr(644,root,root) %{_libdir}/libgadu.a
+%{_libdir}/libgadu.a

@@ -116,7 +116,7 @@ rm -f missing
 %{__make}
 
 %if %{?_with_ioctl_daemon:1}0
-cd src 
+cd src
 %{__make} ioctld
 cd ..
 %endif

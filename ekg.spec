@@ -10,10 +10,6 @@ Version:	0.9.0.%{snapshot}
 Release:	1
 License:	GPL
 Group:		Networking/Utilities
-Group(de):	Netzwerkwesen/Werkzeuge
-Group(es):	Red/Utilitarios
-Group(pl):	Sieciowe/NarzЙdzia
-Group(pt_BR):	Rede/UtilitАrios
 Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
@@ -31,13 +27,6 @@ Eksperymentalny Klient Gadu-Gadu.
 Summary:	libgadu library
 Summary(pl):	Biblioteka libgadu
 Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	Библиотеки
-Group(uk):	Б╕бл╕отеки
 
 %description -n libgadu
 libgadu is intended to make it easy to add Gadu-Gadu communication
@@ -51,13 +40,6 @@ bazuj╠cej na protokole Gadu-Gadu.
 Summary:	libgadu library development
 Summary(pl):	CzЙ╤Ф biblioteki libgadu dla programistСw
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	libgadu
 
 %description -n libgadu-devel
@@ -72,13 +54,6 @@ potrzebne do kompilowania aplikacji korzystaj╠cych z libgadu.
 Summary:	Static libgadu Library
 Summary(pl):	Statyczna biblioteka libgadu
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	libgadu-devel
 
 %description -n libgadu-static

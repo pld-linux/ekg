@@ -10,12 +10,12 @@ Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	1.2
-Release:	0.rc1
+Release:	1
 Epoch:		3
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://dev.null.pl/ekg/%{name}-%{version}rc1.tar.gz
-# Source0-md5:	6fef15b8bddf951294d0ebd43c309253
+Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
+# Source0-md5:	27a7d553c3b78df7f090f05e18dcb9e7
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
@@ -99,7 +99,7 @@ Statisches libgadu Archiv.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q -n %{name}-%{version}rc1
+%setup -q -n %{name}-%{version}
 
 %build
 rm -f missing
@@ -120,10 +120,6 @@ cd src
 %{__make} ioctld
 cd ..
 %endif
-
-cd docs/api
-./make.pl
-cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -168,7 +164,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgadu-devel
 %defattr(644,root,root,755)
-%doc docs/{7thguard,api,ui,devel-hints,przenosny-kod}.txt docs/protocol.html docs/api/{functions,index,types}.html
+%doc docs/{7thguard,ui,devel-hints,przenosny-kod}.txt docs/protocol.html
 %doc ChangeLog docs/{README,TODO} examples
 %{_libdir}/libgadu.so
 %{_includedir}/libgadu.h

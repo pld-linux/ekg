@@ -10,7 +10,7 @@ Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	1.1
-Release:	3
+Release:	4
 Epoch:		3
 License:	GPL
 Group:		Applications/Communications
@@ -22,7 +22,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 %{?!_without_voip:BuildRequires: libgsm-devel}
 BuildRequires:	ncurses-devel
-BuildRequires:	openssl-devel >= 0.9.6j
+BuildRequires:	openssl-devel >= 0.9.6k
 BuildRequires:	perl
 %{?_with_python:BuildRequires: python-devel}
 BuildRequires:	readline-devel

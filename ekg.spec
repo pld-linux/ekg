@@ -9,13 +9,14 @@ Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.4
-Release:	1
+Release:	2
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
 # Source0-md5:	8f35030c05e62c30ce9068e26bd365a2
 Source1:	%{name}.conf
+Patch0:		%{name}-kadu-0_3_6.patch
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -118,6 +119,7 @@ Statyczna biblioteka libgadu.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 rm -f missing

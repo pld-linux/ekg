@@ -99,7 +99,7 @@ Statisches libgadu Archiv.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 rm -f missing

@@ -4,7 +4,7 @@
 %bcond_with	python		# with python support
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
 #
-%define snap    20040417
+%define snap    20040524
 
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Ein Cliente kompatibel mit Gadu-Gadu
@@ -18,7 +18,7 @@ Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{snap}.tar.gz
-# Source0-md5:	0d6cded4ff4883a2c4dc8b2cd7fa92f6
+# Source0-md5:	5ce1e29047e4b7a1df7fef3a1abb1fd3
 Source1:	%{name}.conf
 Patch0:		%{name}-kadu-0_3_6.patch
 URL:		http://dev.null.pl/ekg/

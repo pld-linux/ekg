@@ -63,9 +63,9 @@ The libgadu-devel package contains the header files and some
 documentation needed to develop application with libgadu.
 
 %description -n libgadu-devel -l de
-Das libgadu-devel Paket enthält Header-Files (Kopfzeilenordner)
-und die Dokumentation die Sie benötigen um mit libgadu
-Anwendungen zu entwickeln.
+Das libgadu-devel Paket enthält Header-Files (Kopfzeilenordner) und
+die Dokumentation die Sie benötigen um mit libgadu Anwendungen zu
+entwickeln.
 
 %description -n libgadu-devel -l pl
 Pakiet libgadu-devel zawiera pliki nag³ówkowe i dokumentacjê,
@@ -115,6 +115,7 @@ install lib/libgadu.so.* $RPM_BUILD_ROOT%{_libdir}
 install themes/*.theme $RPM_BUILD_ROOT%{_datadir}/ekg/themes
 
 install docs/ekg.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekg.1
+install docs/ekl2.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekl2.1
 install docs/ekg.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekg.1
 
 # For libgadu-devel

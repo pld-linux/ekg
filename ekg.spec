@@ -10,7 +10,7 @@ Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	20030101
-Release:	1
+Release:	1.1
 Epoch:		1
 License:	GPL
 Group:		Applications/Communications
@@ -155,6 +155,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog docs/{README,TODO} examples
 %{_libdir}/libgadu.so
 %{_includedir}/libgadu.h
+%{_includedir}/libgadu-config.h
 
 %files -n libgadu-static
 %defattr(644,root,root,755)

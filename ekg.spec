@@ -4,15 +4,17 @@
 # _with_python          - with python support
 # _with_voip	        - with voip support (libgsm)
 #
+
 %define		snapshot 20030521
+
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	1.0.%{snapshot}
-Release:	1
-Epoch:		4
+Version:	1.0
+Release:	3.%{snapshot}.1
+Epoch:		3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz

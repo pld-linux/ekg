@@ -8,7 +8,7 @@ Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	20020807
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Applications/Communications
@@ -100,16 +100,16 @@ Statyczna biblioteka libgadu.
 
 %{__make}
 
+( cd docs/api && ./make.pl )
+
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install contrib/ekl2.pl $RPM_BUILD_ROOT%{_bindir}
 install contrib/ekl2.sh $RPM_BUILD_ROOT%{_bindir}
-install docs/ekg.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekg.1
 install docs/ekl2.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekl2.1
 install docs/ekl2.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekl2.1
-install docs/ekg.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekg.1
 
 # For libgadu-devel
 
@@ -144,7 +144,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgadu-devel
 %defattr(644,root,root,755)
-%doc docs/{7thguard,api,dcc-protocol,devel-hints,http,przenosny-kod}.txt docs/protocol.html
+%doc docs/{7thguard,api,dcc-protocol,devel-hints,http,przenosny-kod}.txt docs/protocol.html docs/api/ref.functions.html
 %doc ChangeLog docs/{README,TODO} examples
 %{_libdir}/libgadu.so
 %{_includedir}/libgadu.h

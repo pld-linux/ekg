@@ -7,7 +7,7 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	20020625
+Version:	20020629
 Release:	1
 Epoch:		1
 License:	GPL
@@ -137,7 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/e*
-%doc docs/{7thguard,dcc,on,themes,vars,emoticons,voip}.txt
+%doc docs/{7thguard,dcc,emoticons,on,themes,ui,vars,voip}.txt
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.sample
 %{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}
 %{_datadir}/ekg
@@ -150,7 +150,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgadu-devel
 %defattr(644,root,root,755)
-%doc docs/{7thguard,api,devel-hints,dcc-protocol}.txt docs/protocol.html
+%doc docs/{7thguard,api,dcc-protocol,devel-hints}.txt docs/protocol.html
 %doc ChangeLog docs/{README,TODO} examples
 %{_includedir}/libgadu.h
 

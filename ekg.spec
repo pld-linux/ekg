@@ -1,4 +1,8 @@
-%define		snapshot	20020204
+#
+# Conditional build:
+# _with_ioctl_daemon - with ioctl_daemon (suid-root!)
+#
+%define		snapshot	20020205
 Summary:	A client compatible with Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
@@ -89,7 +93,9 @@ Statyczna biblioteka libgadu.
 %build
 autoconf
 %configure \
-	%{?!debug:--without-debug}
+	%{?!debug:--without-debug} \
+	%{?!_with_ioctl_daemon:--without-ioctl} 
+	
 %{__make}
 
 %install
@@ -98,7 +104,6 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_includedir},%{_libdir}} \
 	$RPM_BUILD_ROOT{%{_mandir}/{,pl/}man1,%{_datadir}/ekg/themes}
 
 install src/ekg $RPM_BUILD_ROOT%{_bindir}
-install src/ioctl_daemon $RPM_BUILD_ROOT%{_bindir}
 install docs/ekl.pl $RPM_BUILD_ROOT%{_bindir}
 install lib/libgadu.h $RPM_BUILD_ROOT%{_includedir}
 install lib/libgadu.a $RPM_BUILD_ROOT%{_libdir}
@@ -108,6 +113,10 @@ install themes/*.theme $RPM_BUILD_ROOT%{_datadir}/ekg/themes
 
 install docs/ekg.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekg.1
 install docs/ekg.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekg.1
+
+%if %{?_with_ioctl_daemon:1}%{?!_with_ioctl_daemon:0}
+install src/ioctl_daemon $RPM_BUILD_ROOT%{_bindir}
+%endif
 
 gzip -9nf ChangeLog docs/*
 
@@ -120,7 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/e*
-%attr(4755,root,root) %{_bindir}/ioctl_daemon
+%{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctl_daemon}
 %{_datadir}/ekg
 %doc docs/{7thguard,dcc,on,themes,vars}.txt.gz
 %doc ChangeLog.gz docs/{FAQ,README,TODO}.gz

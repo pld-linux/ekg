@@ -104,7 +104,6 @@ rm examples/Makefile examples/Makefile.in
 %if %{?_with_ioctl_daemon:1}%{?!_with_ioctl_daemon:0}
 install src/ioctl_daemon $RPM_BUILD_ROOT%{_bindir}
 %endif
-#gzip -9 nf ChangeLog docs/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -118,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctl_daemon}
 %{_datadir}/ekg
 %doc docs/{7thguard,dcc,on,themes,vars}.txt
-%doc ChangeLog.gz docs/{FAQ,README,TODO,ULOTKA}
+%doc ChangeLog docs/{FAQ,README,TODO,ULOTKA}
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
 

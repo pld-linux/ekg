@@ -1,4 +1,4 @@
-%define        	snapshot	20011112
+%define        	snapshot	20011117
 Summary:	A client compatible with Gadu-Gadu 	
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu 	
 Name:		ekg		
@@ -79,12 +79,15 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 install -d $RPM_BUILD_ROOT%{_includedir}
 install -d $RPM_BUILD_ROOT%{_libdir}
+install -d $RPM_BUILD_ROOT%{_datadir}/ekg
 
 install ekg 	$RPM_BUILD_ROOT%{_bindir}
 install libgg.so.* $RPM_BUILD_ROOT%{_libdir}
 install libgg.a $RPM_BUILD_ROOT%{_libdir}
 ln -s %{_libdir}/libgg.so.0.9.0 $RPM_BUILD_ROOT%{_libdir}/libgg.so
 install libgg.h $RPM_BUILD_ROOT%{_includedir}
+
+install themes/*.theme $RPM_BUILD_ROOT%{_datadir}/ekg
 
 gzip -9nf ChangeLog README docs/* 
 
@@ -96,12 +99,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/*.theme.gz
 %doc ChangeLog.gz README.gz
 %doc docs/7thguard.txt.gz docs/themes.txt.gz 
 %doc docs/ekl.pl.gz docs/ekg.man.gz 
 %attr(755,root,root) %{_bindir}/* 
-
+%attr(644,root,root) %{_datadir}/ekg/*
 %files -n libgg
 %defattr(644,root,root,755)
 %attr(644,root,root) %{_libdir}/libgg.so.*

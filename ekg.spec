@@ -2,18 +2,17 @@
 # Conditional build:
 # _with_ioctl_daemon - with ioctl_daemon (suid-root!)
 #
-%define		snapshot	20020528
+%define		snapshot	20020529
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu 
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	0.9.0.%{snapshot}
-Release:	2
+Release:	1	
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz
-Patch0:		%{name}-home_etc.patch
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
 BuildRequires:	ncurses-devel
@@ -91,7 +90,6 @@ Statyczna biblioteka libgadu.
 
 %prep
 %setup -q -n %{name}-%{snapshot}
-%patch0 -p1
 
 %build
 %{__autoconf}
@@ -149,7 +147,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgadu-devel
 %defattr(644,root,root,755)
-%doc docs/{7thguard,api,devel-hints,dcc-protocol}.txt protocol.html
+%doc docs/{7thguard,api,devel-hints,dcc-protocol}.txt docs/protocol.html
 %doc ChangeLog docs/{README,TODO} examples
 %{_includedir}/libgadu.h
 

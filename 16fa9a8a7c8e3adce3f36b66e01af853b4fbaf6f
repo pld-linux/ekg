@@ -1,0 +1,8 @@
+- added english man page,
+- added patch fixing polish man page,
+- fixed placing man pages,
+- use %%{__make} macro,
+= a+x libgg.so.* (libgg subpackage),
+- removed libgg.so link (libgg-devel subpackage),
+- cosmetics,
+- release 2.

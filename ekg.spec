@@ -3,6 +3,7 @@
 %bcond_without	aspell		# without spell checking
 %bcond_without	voip		# without VoIP support
 %bcond_without	python		# with python support
+%bcond_with		pthread		# build with Posix threads support
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
 #
 Summary:	A client compatible with Gadu-Gadu
@@ -12,7 +13,7 @@ Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.5
-Release:	5
+Release:	6
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
@@ -134,7 +135,11 @@ rm -f missing
 %configure \
 	--enable-shared \
 	--enable-static \
+%if %{with pthread}
 	--with-pthread \
+%else
+	--without-pthread \
+%endif
 	--without-bind \
 	%{?with_python:--with-python} \
 	%{!?with_voip:--without-libgsm} \

@@ -1,15 +1,16 @@
 #
 # Conditional build:
-# _with_ioctl_daemon - with ioctl_daemon (suid-root!)
-# _with_ncurses	- with new experimental ui
-# _with_python - with python support
+# _with_ioctl_daemon    - with ioctl_daemon (suid-root!)
+# _without_ncurses	- without new experimental ui
+# _with_python          - with python support
+# _without_voip	        - without voip support
 #
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	20020906
+Version:	20020909
 Release:	1
 Epoch:		1
 License:	GPL
@@ -17,10 +18,10 @@ Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	perl
-BuildRequires:	libgsm-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	readline-devel
-BuildRequires:	python-devel
+%{?!_without_voip:BuildRequires: libgsm-devel}
+%{?_with_python:BuildRequires: python-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -99,8 +100,10 @@ Statyczna biblioteka libgadu.
 %configure \
 	--enable-shared \
 	--enable-static \
-	%{?!_with_python:--with-python} \
-	%{?!_with_ncurses:--enable-ui-ncurses} \
+	--enable-force-readline \
+	%{?_with_python:--with-python} \
+	%{?!_without_ncurses:--enable-ui-ncurses} \
+	%{?_without_voip:--without-libgsm} \
 	%{?!debug:--without-debug} \
 	%{?!_with_ioctl_daemon:--disable-ioctld}
 %{__make}

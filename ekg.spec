@@ -1,9 +1,9 @@
-%define		snapshot	20011215
+%define		snapshot	20020102
 Summary:	A client compatible with Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	0.9.0.%{snapshot}
-Release:	2
+Release:	1
 License:	GPL
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
@@ -102,8 +102,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/ekg
-%doc docs/{7thguard,themes}.txt.gz
-%doc ChangeLog.gz docs/{README,ekl.pl}.gz
+%doc docs/{7thguard,dcc,themes,vars}.txt.gz
+%doc ChangeLog.gz docs/{FAQ,README,TODO,ekl.pl}.gz
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
 
@@ -114,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_includedir}/libgg.h
 %doc docs/{7thguard,api,protocol}.txt.gz
-%doc ChangeLog.gz docs/README.gz
+%doc ChangeLog.gz docs/{README,TODO}.gz
 
 %files -n libgg-static
 %attr(644,root,root) %{_libdir}/libgg.a

@@ -1,8 +1,8 @@
---- docs/ekg.man.old	Thu Nov 15 21:21:05 2001
-+++ docs/ekg.man	Thu Jan  3 23:28:06 2002
+--- docs/ekg.man.old	Sun Dec  2 22:07:10 2001
++++ docs/ekg.man	Fri Jan  4 00:34:14 2002
 @@ -1,4 +1,4 @@
--.TH EKG 1 "31 pa¼dziernik 2001" 
-+.TH EKG 1 "31 pa¼dziernika 2001" 
+-.TH EKG n "31 pa¼dziernik 2001" 
++.TH EKG n "31 pa¼dziernika 2001" 
  .SH NAZWA
  ekg \- Eksperymentalny Klient Gadu-Gadu
  .SH SK£ADNIA

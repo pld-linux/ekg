@@ -12,7 +12,7 @@ Name:		ekg
 Version:	1.1
 Release:	1
 Epoch:		3
-License:	GPL
+License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
 # Source0-md5:	dfcc114d41a942b774b26143c509d90f
@@ -46,7 +46,7 @@ Summary:	libgadu library
 Summary(pl):	Biblioteka libgadu
 Group:		Libraries
 Obsoletes:	libgg
-License:	LGPL
+License:	LGPL v2.1
 
 %description -n libgadu
 libgadu is intended to make it easy to add Gadu-Gadu communication

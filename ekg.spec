@@ -9,12 +9,13 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	1.0
+Version:	1.1
 Release:	3
 Epoch:		3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
+# Source0-md5:	dfcc114d41a942b774b26143c509d90f
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
@@ -98,9 +99,10 @@ Statisches libgadu Archiv.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q 
+%setup -q -n %{name}-%{version}
 
 %build
+rm -f missing
 %{__aclocal}
 %{__autoheader}
 %{__autoconf}
@@ -127,13 +129,9 @@ cd ..
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install  install-ekl2  \
+	DESTDIR=$RPM_BUILD_ROOT
 
-# From 20020310 can be replaced by ,,make install-ekl2''
-install contrib/ekl2.pl $RPM_BUILD_ROOT%{_bindir}
-install contrib/ekl2.sh $RPM_BUILD_ROOT%{_bindir}
-install docs/ekl2.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekl2.1
-install docs/ekl2.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekl2.1
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/
 
 # For libgadu-devel

@@ -9,13 +9,13 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	1.2
+Version:	1.3
 Release:	1
 Epoch:		3
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
-# Source0-md5:	27a7d553c3b78df7f090f05e18dcb9e7
+# Source0-md5:	e59cddf8b4daed8b949da86f97f486fc
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf

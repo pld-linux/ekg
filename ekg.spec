@@ -114,7 +114,7 @@ rm -f missing
 	%{?with_python:--with-python} \
 	%{?!with_voip:--without-libgsm} \
 	%{?!with_ioctl_daemon:--disable-ioctld}
-%{__make}
+%{__make} CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"
 
 %if %{with ioctl_daemon}
 cd src

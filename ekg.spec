@@ -155,11 +155,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/e*
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.conf
 %doc docs/{7thguard,dcc,files,gdb,python,sim,themes,ui-ncurses,vars,voip}.txt
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
+%attr(755,root,root) %{_bindir}/e*
 %{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.conf
 %{_datadir}/ekg
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*

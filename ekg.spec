@@ -7,7 +7,7 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	20020613
+Version:	20020616
 Release:	1
 Epoch:		1
 License:	GPL
@@ -17,6 +17,7 @@ URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
 BuildRequires:	ncurses-devel
 BuildRequires:	readline-devel
+BuildRequires:	libgsm-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -136,7 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/e*
-%doc docs/{7thguard,dcc,on,themes,vars,emoticons}.txt
+%doc docs/{7thguard,dcc,on,themes,vars,emoticons,voip}.txt
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.sample
 %{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}
 %{_datadir}/ekg

@@ -9,19 +9,20 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	20030130
-Release:	1
-Epoch:		1
+Version:	1.1
+Release:	3
+Epoch:		3
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://bzium.eu.org/ekg/%{name}-%{version}.tar.gz
-Source1:	ekg.conf
-URL:		http://bzium.eu.org/ekg/
+Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
+# Source0-md5:	dfcc114d41a942b774b26143c509d90f
+Source1:	%{name}.conf
+URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?!_without_voip:BuildRequires: libgsm-devel}
 BuildRequires:	ncurses-devel
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 0.9.6j
 BuildRequires:	perl
 %{?_with_python:BuildRequires: python-devel}
 BuildRequires:	readline-devel
@@ -63,7 +64,7 @@ bazuj±cej na protokole Gadu-Gadu.
 Summary:	libgadu library development
 Summary(pl):	Czê¶æ biblioteki libgadu dla programistów
 Group:		Development/Libraries
-Requires:	libgadu
+Requires:	libgadu = %{version}
 Obsoletes:	libgg-devel
 License:	LGPL
 
@@ -84,7 +85,7 @@ potrzebne do kompilowania aplikacji korzystaj±cych z libgadu.
 Summary:	Static libgadu Library
 Summary(pl):	Statyczna biblioteka libgadu
 Group:		Development/Libraries
-Requires:	libgadu-devel
+Requires:	libgadu-devel = %{version}
 Obsoletes:	libgg-static
 License:	LGPL
 
@@ -98,9 +99,10 @@ Statisches libgadu Archiv.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q
+%setup -q 
 
 %build
+rm -f missing
 %{__aclocal}
 %{__autoheader}
 %{__autoconf}
@@ -113,24 +115,28 @@ Statyczna biblioteka libgadu.
 	%{?!_with_ioctl_daemon:--disable-ioctld}
 %{__make}
 
-%{?_with_ioctl_daemon: (cd src && %{__make} ioctld )}
-( cd docs/api && ./make.pl )
+%if %{?_with_ioctl_daemon:1}0
+cd src 
+%{__make} ioctld
+cd ..
+%endif
+
+cd docs/api
+./make.pl
+cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install  install-ekl2  \
+	DESTDIR=$RPM_BUILD_ROOT
 
-install contrib/ekl2.pl $RPM_BUILD_ROOT%{_bindir}
-install contrib/ekl2.sh $RPM_BUILD_ROOT%{_bindir}
-install docs/ekl2.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekl2.1
-install docs/ekl2.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekl2.1
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/
 
 # For libgadu-devel
 
-rm examples/Makefile examples/Makefile.in
+rm examples/Makefile examples/Makefile.in examples/.cvsignore
 
 %if %{?_with_ioctl_daemon:1}%{?!_with_ioctl_daemon:0}
 install src/ioctld $RPM_BUILD_ROOT%{_bindir}
@@ -147,11 +153,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/e*
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.conf     
-%doc docs/{7thguard,dcc,emoticons,gdb,on,python,themes,ui,vars,voip}.txt
+%doc docs/{7thguard,dcc,files,gdb,python,sim,themes,ui-ncurses,vars,voip}.txt
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
+%attr(755,root,root) %{_bindir}/e*
 %{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.conf
 %{_datadir}/ekg
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
@@ -162,7 +168,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgadu-devel
 %defattr(644,root,root,755)
-%doc docs/{7thguard,api,dcc-protocol,devel-hints,http,przenosny-kod}.txt docs/protocol.html docs/api/ref.functions.html
+%doc docs/{7thguard,api,ui,devel-hints,przenosny-kod}.txt docs/protocol.html docs/api/{functions,index,types}.html
 %doc ChangeLog docs/{README,TODO} examples
 %{_libdir}/libgadu.so
 %{_includedir}/libgadu.h

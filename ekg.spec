@@ -7,12 +7,13 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	20020717
+Version:	20020719
 Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
+Patch0:		ekg-DESTDIR-temporary.patch
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
 BuildRequires:	ncurses-devel
@@ -91,6 +92,7 @@ Statyczna biblioteka libgadu.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__autoconf}
@@ -103,18 +105,10 @@ Statyczna biblioteka libgadu.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_includedir},%{_libdir}} \
-	$RPM_BUILD_ROOT{%{_mandir}/{,pl/}man1,%{_datadir}/ekg/themes}
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-install src/ekg $RPM_BUILD_ROOT%{_bindir}
 install contrib/ekl2.pl $RPM_BUILD_ROOT%{_bindir}
 install contrib/ekl2.sh $RPM_BUILD_ROOT%{_bindir}
-install lib/libgadu.h $RPM_BUILD_ROOT%{_includedir}
-install lib/libgadu.a $RPM_BUILD_ROOT%{_libdir}
-install lib/libgadu.so.* $RPM_BUILD_ROOT%{_libdir}
-
-install themes/*.theme $RPM_BUILD_ROOT%{_datadir}/ekg/themes
-
 install docs/ekg.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekg.1
 install docs/ekl2.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekl2.1
 install docs/ekl2.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekl2.1

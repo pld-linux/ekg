@@ -12,6 +12,7 @@ Group(pl):	Sieciowe/Narzêdzia
 Group(pt_BR):	Rede/Utilitários
 Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz
 URL:		http://dev.null.pl/ekg/
+BuildRequires:	autoconf
 BuildRequires:	ncurses-devel
 BuildRequires:	readline-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -68,7 +69,8 @@ Statyczna biblioteka libgg.
 %setup -q -n %{name}-%{snapshot}
 
 %build
-%configure2_13 \
+autoconf
+%configure \
 	%{?!debug:--without-debug}
 %{__make}
 
@@ -81,6 +83,10 @@ install src/ekg $RPM_BUILD_ROOT%{_bindir}
 install lib/libgg.h $RPM_BUILD_ROOT%{_includedir}
 install lib/libgg.a $RPM_BUILD_ROOT%{_libdir}
 install lib/libgg.so.* $RPM_BUILD_ROOT%{_libdir}
+( 
+  cd $RPM_BUILD_ROOT%{_libdir}
+  ln -s libgg.so.* libgg.so 
+)
 
 install themes/*.theme $RPM_BUILD_ROOT%{_datadir}/ekg
 
@@ -109,6 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgg-devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgg.so
 %{_includedir}/libgg.h
 %doc docs/{7thguard,api,protocol}.txt.gz
 %doc ChangeLog.gz docs/{README,TODO}.gz

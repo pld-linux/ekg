@@ -7,8 +7,8 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	20020706
-Release:	1
+Version:	20020717
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		Applications/Communications

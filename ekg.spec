@@ -141,7 +141,7 @@ rm -f missing
 	%{?with_python:--with-python} \
 	%{!?with_voip:--without-libgsm} \
 	%{?with_aspell:--enable-aspell} \
-	%{!?with_ioctl_daemon:--disable-ioctld}
+	%{?with_ioctl_daemon:--enable-ioctld}
 
 %{__make} \
 	CC="%{__cc} %{rpmcflags} -Wall -I%{_includedir}/ncurses"

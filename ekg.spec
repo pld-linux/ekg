@@ -67,7 +67,7 @@ bazuj±cej na protokole Gadu-Gadu.
 Summary:	libgadu library development
 Summary(pl):	Czê¶æ biblioteki libgadu dla programistów
 Group:		Development/Libraries
-Requires:	libgadu = %{version}
+Requires:	libgadu = %{epoch}:%{version}
 Obsoletes:	libgg-devel
 License:	LGPL
 
@@ -88,7 +88,7 @@ potrzebne do kompilowania aplikacji korzystaj±cych z libgadu.
 Summary:	Static libgadu Library
 Summary(pl):	Statyczna biblioteka libgadu
 Group:		Development/Libraries
-Requires:	libgadu-devel = %{version}
+Requires:	libgadu-devel = %{epoch}:%{version}
 Obsoletes:	libgg-static
 License:	LGPL
 

@@ -105,12 +105,10 @@ rm examples/Makefile examples/Makefile.in
 install src/ioctl_daemon $RPM_BUILD_ROOT%{_bindir}
 %endif
 
-gzip -9nf ChangeLog docs/*
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -n libgadu -p /sbin/ldconfig
+%post   -n libgadu -p /sbin/ldconfig
 %postun -n libgadu -p /sbin/ldconfig
 
 %files
@@ -129,9 +127,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgadu-devel
 %defattr(644,root,root,755)
+%doc docs/{7thguard,api,devel-hints,protocol,dcc-protocol}.txt
+%doc ChangeLog docs/{README,TODO} examples
 %{_includedir}/libgadu.h
-%doc docs/{7thguard,api,devel-hints,protocol,dcc-protocol}.txt.gz
-%doc ChangeLog.gz docs/{README,TODO}.gz examples
 
 %files -n libgadu-static
 %defattr(644,root,root,755)

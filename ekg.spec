@@ -2,7 +2,7 @@
 %bcond_with	python
 %bcond_with	ioctl_daemon
 
-%define	snap	20031001
+%define	snap	20031003
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
@@ -14,7 +14,7 @@ Epoch:		3
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{snap}.tar.gz
-# Source0-md5:	613eaeb65ffca744bff96eafb04f5039
+# Source0-md5:	97de9587e97f21f69d75cdde64acc20d
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf

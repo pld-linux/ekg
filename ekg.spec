@@ -2,7 +2,7 @@
 # Conditional build:
 # _with_ioctl_daemon - with ioctl_daemon (suid-root!)
 #
-%define		snapshot	20020403
+%define		snapshot	20020414
 Summary:	A client compatible with Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
@@ -83,7 +83,8 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_includedir},%{_libdir}} \
 	$RPM_BUILD_ROOT{%{_mandir}/{,pl/}man1,%{_datadir}/ekg/themes}
 
 install src/ekg $RPM_BUILD_ROOT%{_bindir}
-#install docs/ekl.pl $RPM_BUILD_ROOT%{_bindir}
+install contrib/ekl2.pl $RPM_BUILD_ROOT%{_bindir}
+install contrib/ekl2.sh $RPM_BUILD_ROOT%{_bindir}
 install lib/libgadu.h $RPM_BUILD_ROOT%{_includedir}
 install lib/libgadu.a $RPM_BUILD_ROOT%{_libdir}
 install lib/libgadu.so.* $RPM_BUILD_ROOT%{_libdir}
@@ -122,7 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n libgadu-devel
 %defattr(644,root,root,755)
 %{_includedir}/libgadu.h
-%doc docs/{7thguard,api,devel-hints,protocol}.txt.gz
+%doc docs/{7thguard,api,devel-hints,protocol,dcc-protocol}.txt.gz
 %doc ChangeLog.gz docs/{README,TODO}.gz
 
 %files -n libgadu-static

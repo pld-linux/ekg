@@ -4,8 +4,8 @@
 #
 %define		snapshot	20020528
 Summary:	A client compatible with Gadu-Gadu
-Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu 
+Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	0.9.0.%{snapshot}
 Release:	2
@@ -39,13 +39,13 @@ License:	LGPL
 libgadu is intended to make it easy to add Gadu-Gadu communication
 support to your software.
 
-%description -n libgadu -l pl
-libgadu umo¿liwia ³atwe dodanie do ró¿nych aplikacji komunikacji
-bazuj±cej na protokole Gadu-Gadu.
-
 %description -n libgadu -l de
 Mit libgadu ist es Ihnen möglich auf einfache Weise Gadu-Gadu
 Kommunikations-Unterstützung in Ihre Software einzubinden.
+
+%description -n libgadu -l pl
+libgadu umo¿liwia ³atwe dodanie do ró¿nych aplikacji komunikacji
+bazuj±cej na protokole Gadu-Gadu.
 
 %package -n libgadu-devel
 Summary:	libgadu library development
@@ -59,14 +59,14 @@ License:	LGPL
 The libgadu-devel package contains the header files and some
 documentation needed to develop application with libgadu.
 
-%description -n libgadu-devel -l pl
-Pakiet libgadu-devel zawiera pliki nag³ówkowe i dokumentacjê,
-potrzebne do kompilowania aplikacji korzystaj±cych z libgadu.
-
 %description -n libgadu-devel -l de
 Das libgadu-devel Paket enthält Header-Files (Kopfzeilenordner)
 und die Dokumentation die Sie benötigen um mit libgadu
 Anwendungen zu entwickeln.
+
+%description -n libgadu-devel -l pl
+Pakiet libgadu-devel zawiera pliki nag³ówkowe i dokumentacjê,
+potrzebne do kompilowania aplikacji korzystaj±cych z libgadu.
 
 %package -n libgadu-static
 Summary:	Static libgadu Library
@@ -79,11 +79,11 @@ License:	LGPL
 %description -n libgadu-static
 Static libgadu library.
 
-%description -n libgadu-static -l pl
-Statyczna biblioteka libgadu.
-
 %description -n libgadu-static -l de
 Statisches libgadu Archiv.
+
+%description -n libgadu-static -l pl
+Statyczna biblioteka libgadu.
 
 %prep
 %setup -q -n %{name}-%{snapshot}

@@ -2,7 +2,7 @@
 # Conditional build:
 # _with_ioctl_daemon - with ioctl_daemon (suid-root!)
 #
-%define		snapshot	20020525
+%define		snapshot	20020528
 Summary:	A client compatible with Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
@@ -127,7 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgadu-devel
 %defattr(644,root,root,755)
-%doc docs/{7thguard,api,devel-hints,protocol,dcc-protocol}.txt
+%doc docs/{7thguard,api,devel-hints,dcc-protocol}.txt protocol.html
 %doc ChangeLog docs/{README,TODO} examples
 %{_includedir}/libgadu.h
 

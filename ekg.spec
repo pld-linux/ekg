@@ -5,6 +5,7 @@
 %define		snapshot	20020528
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu 
+Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	0.9.0.%{snapshot}
@@ -22,11 +23,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 A client compatible with Gadu-Gadu.
 
-%description -l pl
-Eksperymentalny Klient Gadu-Gadu.
-
 %description -l de
 Einen client kompatibel zu Gadu-Gadu.
+
+%description -l it
+Esperimentale cliente di Gadu-Gadu.
+
+%description -l pl
+Eksperymentalny Klient Gadu-Gadu.
 
 %package -n libgadu
 Summary:	libgadu library

@@ -15,7 +15,6 @@ Epoch:		1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://bzium.eu.org/ekg/%{name}-%{version}.tar.gz
-Patch0:		%{name}-va_copy.patch
 URL:		http://bzium.eu.org/ekg/
 BuildRequires:	perl
 BuildRequires:	ncurses-devel
@@ -95,7 +94,6 @@ Statyczna biblioteka libgadu.
 
 %prep
 %setup -q
-%patch0
 
 %build
 %configure \

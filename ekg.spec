@@ -1,4 +1,4 @@
-%define        	snapshot	2001092902 
+%define        	snapshot	2001100102
 Summary:	A client compatible with Gadu-Gadu 	
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu 	
 Name:		ekg		

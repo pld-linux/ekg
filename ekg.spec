@@ -83,7 +83,7 @@ install -d $RPM_BUILD_ROOT%{_libdir}
 install ekg 	$RPM_BUILD_ROOT%{_bindir}
 install libgg.so.* $RPM_BUILD_ROOT%{_libdir}
 install libgg.a $RPM_BUILD_ROOT%{_libdir}
-ln -s %{_libdir}/libgg.so.* $RPM_BUILD_ROOT%{_libdir}/libgg.so
+ln -s $RPM_BUILD_ROOT%{_libdir}/libgg.so.* $RPM_BUILD_ROOT%{_libdir}/libgg.so
 install libgg.h $RPM_BUILD_ROOT%{_includedir}
 
 gzip -9nf ChangeLog README docs/* 
@@ -108,7 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgg-devel
 %defattr(644,root,root,755)
-%attr(644,root,root) %{_libdir}/libgg.so
+%attr(644,root,root) %{_libdir}/libgg.so.*
 %attr(644,root,root) %{_includedir}/* 
 %doc docs/protocol.txt.gz
 %doc docs/api.txt.gz

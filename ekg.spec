@@ -7,7 +7,7 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	20020825
+Version:	20020906
 Release:	1
 Epoch:		1
 License:	GPL
@@ -94,11 +94,11 @@ Statyczna biblioteka libgadu.
 %setup -q
 
 %build
-perl -pi -e "s/python2.1/python2.2/" configure
 %configure \
 	--enable-shared \
 	--enable-static \
 	--with-python \
+	--enable-ui-ncurses \
 	%{?!debug:--without-debug} \
 	%{?!_with_ioctl_daemon:--disable-ioctld}
 %{__make}

@@ -2,25 +2,26 @@
 %bcond_with	python
 %bcond_with	ioctl_daemon
 
-%define	snap	20031003
+%define	snap	rc2
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	1.4
-Release:	0.%{snap}.1
+Release:	1.%{snap}.1
 Epoch:		3
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://dev.null.pl/ekg/%{name}-%{snap}.tar.gz
-# Source0-md5:	97de9587e97f21f69d75cdde64acc20d
+Source0:	http://dev.null.pl/ekg/%{name}-%{version}%{snap}.tar.gz
+# Source0-md5:	0049c0106a72d84347b72404554086d2
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_voip:BuildRequires:	libgsm-devel}
 BuildRequires:	ncurses-devel
+BuildRequires:	libjpeg-devel
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	%{_bindir}/perl
 %{?with_python:BuildRequires:	python-devel}
@@ -98,7 +99,7 @@ Statisches libgadu Archiv.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q -n %{name}-%{snap}
+%setup -q -n %{name}-%{version}%{snap}
 
 %build
 rm -f missing
@@ -109,6 +110,7 @@ rm -f missing
 	--enable-shared \
 	--enable-static \
 	--with-pthread \
+	--without-bind \
 	%{?with_python:--with-python} \
 	%{?!with_voip:--without-libgsm} \
 	%{?!with_ioctl_daemon:--disable-ioctld}

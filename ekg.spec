@@ -1,4 +1,4 @@
-%define        	snapshot	20011117
+%define        	snapshot	20011201
 Summary:	A client compatible with Gadu-Gadu 	
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu 	
 Name:		ekg		
@@ -71,8 +71,6 @@ Statyczna biblioteka libgg.
 ./configure \
 	%{?!debug:--without-debug}
 make
-make shared
-make static 
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -81,15 +79,15 @@ install -d $RPM_BUILD_ROOT%{_includedir}
 install -d $RPM_BUILD_ROOT%{_libdir}
 install -d $RPM_BUILD_ROOT%{_datadir}/ekg
 
-install ekg 	$RPM_BUILD_ROOT%{_bindir}
-install libgg.so.* $RPM_BUILD_ROOT%{_libdir}
-install libgg.a $RPM_BUILD_ROOT%{_libdir}
+install src/ekg $RPM_BUILD_ROOT%{_bindir}
+install lib/libgg.so.* $RPM_BUILD_ROOT%{_libdir}
+install lib/libgg.a $RPM_BUILD_ROOT%{_libdir}
 ln -s %{_libdir}/libgg.so.0.9.0 $RPM_BUILD_ROOT%{_libdir}/libgg.so
-install libgg.h $RPM_BUILD_ROOT%{_includedir}
+install lib/libgg.h $RPM_BUILD_ROOT%{_includedir}
 
 install themes/*.theme $RPM_BUILD_ROOT%{_datadir}/ekg
 
-gzip -9nf ChangeLog README docs/* 
+gzip -9nf ChangeLog docs/* 
 
 %post -n libgg -p /sbin/ldconfig 
 %postun -n libgg -p /sbin/ldconfig 
@@ -99,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog.gz README.gz
+%doc ChangeLog.gz docs/README.gz
 %doc docs/7thguard.txt.gz docs/themes.txt.gz 
 %doc docs/ekl.pl.gz docs/ekg.man.gz 
 %attr(755,root,root) %{_bindir}/* 

@@ -2,17 +2,17 @@
 # Conditional build:
 # _with_ioctl_daemon - with ioctl_daemon (suid-root!)
 #
-%define		snapshot	20020609
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	0.9.0.%{snapshot}
-Release:	1	
+Version:	20020611
+Release:	1
+Epoch:		1
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz
+Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
 BuildRequires:	ncurses-devel
@@ -89,14 +89,14 @@ Statisches libgadu Archiv.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q -n %{name}-%{snapshot}
+%setup -q
 
 %build
 %{__autoconf}
 %configure \
 	--with-shared \
 	%{?!debug:--without-debug} \
-	%{?!_with_ioctl_daemon:--without-ioctl}
+	%{?!_with_ioctl_daemon:--without-ioctld}
 
 %{__make}
 

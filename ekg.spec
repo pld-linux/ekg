@@ -17,13 +17,15 @@ Group:		Applications/Communications
 Source0:	http://bzium.eu.org/ekg/%{name}-%{version}.tar.gz
 Source1:	ekg.conf
 URL:		http://bzium.eu.org/ekg/
-BuildRequires:	perl
+BuildRequires:	autoconf
+BuildRequires:	automake
+%{?!_without_voip:BuildRequires: libgsm-devel}
 BuildRequires:	ncurses-devel
+BuildRequires:	openssl-devel
+BuildRequires:	perl
+%{?_with_python:BuildRequires: python-devel}
 BuildRequires:	readline-devel
 BuildRequires:	zlib-devel
-BuildRequires:	openssl-devel
-%{?!_without_voip:BuildRequires: libgsm-devel}
-%{?_with_python:BuildRequires: python-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description

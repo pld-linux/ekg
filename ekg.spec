@@ -2,7 +2,7 @@
 # Conditional build:
 # _with_ioctl_daemon - with ioctl_daemon (suid-root!)
 #
-%define		snapshot	20020522
+%define		snapshot	20020525
 Summary:	A client compatible with Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
@@ -114,8 +114,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/e*
-%doc docs/{7thguard,dcc,on,themes,vars}.txt
-%doc ChangeLog docs/{FAQ,README,TODO,ULOTKA}
+%doc docs/{7thguard,dcc,on,themes,vars,emoticons}.txt
+%doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.sample
 %{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctl_daemon}
 %{_datadir}/ekg
 %{_mandir}/man1/*

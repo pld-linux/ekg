@@ -5,6 +5,7 @@
 %define		snapshot	20020528
 Summary:	A client compatible with Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
+Summary(de):	Einen client kompatibel zu Gadu-Gadu 
 Name:		ekg
 Version:	0.9.0.%{snapshot}
 Release:	2
@@ -24,6 +25,9 @@ A client compatible with Gadu-Gadu.
 %description -l pl
 Eksperymentalny Klient Gadu-Gadu.
 
+%description -l de
+Einen client kompatibel zu Gadu-Gadu.
+
 %package -n libgadu
 Summary:	libgadu library
 Summary(pl):	Biblioteka libgadu
@@ -38,7 +42,7 @@ support to your software.
 %description -n libgadu -l pl
 libgadu umo¿liwia ³atwe dodanie do ró¿nych aplikacji komunikacji
 bazuj±cej na protokole Gadu-Gadu.
-
+ 
 %package -n libgadu-devel
 Summary:	libgadu library development
 Summary(pl):	Czê¶æ biblioteki libgadu dla programistów

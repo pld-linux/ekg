@@ -9,7 +9,7 @@ Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	0.9.0.%{snapshot}
-Release:	2
+Release:	1	
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz

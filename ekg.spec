@@ -10,18 +10,18 @@ Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	1.0
-Release:	1rc2
-Epoch:		2
+Release:	3
+Epoch:		3
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://dev.null.pl/ekg/%{name}-%{version}rc2.tar.gz
+Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?!_without_voip:BuildRequires: libgsm-devel}
 BuildRequires:	ncurses-devel
-BuildRequires:	openssl-devel >= 0.9.6i
+BuildRequires:	openssl-devel >= 0.9.6j
 BuildRequires:	perl
 %{?_with_python:BuildRequires: python-devel}
 BuildRequires:	readline-devel
@@ -98,7 +98,7 @@ Statisches libgadu Archiv.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q -n %{name}-%{version}rc2
+%setup -q 
 
 %build
 %{__aclocal}
@@ -113,7 +113,7 @@ Statyczna biblioteka libgadu.
 	%{?!_with_ioctl_daemon:--disable-ioctld}
 %{__make}
 
-%if {?_with_ioctl_daemon:1}0
+%if %{?_with_ioctl_daemon:1}0
 cd src 
 %{__make} ioctld
 cd ..
@@ -155,11 +155,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/e*
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.conf
 %doc docs/{7thguard,dcc,files,gdb,python,sim,themes,ui-ncurses,vars,voip}.txt
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
+%attr(755,root,root) %{_bindir}/e*
 %{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.conf
 %{_datadir}/ekg
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*

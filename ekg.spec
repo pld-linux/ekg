@@ -1,6 +1,7 @@
 #
 # Conditional build:
 # _with_ioctl_daemon - with ioctl_daemon (suid-root!)
+# _with_ncurses	- with new experimental ui
 #
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu
@@ -98,7 +99,7 @@ Statyczna biblioteka libgadu.
 	--enable-shared \
 	--enable-static \
 	--with-python \
-	--enable-ui-ncurses \
+	%{?!_with_ncurses:--enable-ui-ncurses} \
 	%{?!debug:--without-debug} \
 	%{?!_with_ioctl_daemon:--disable-ioctld}
 %{__make}

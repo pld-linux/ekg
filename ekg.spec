@@ -1,8 +1,6 @@
-#
-# Conditional build:
-# _with_ioctl_daemon    - with ioctl_daemon (suid-root!)
-# _with_python          - with python support
-# _with_voip	        - with voip support (libgsm)
+%bcond_without	voip
+%bcond_with	python
+%bcond_with	ioctl_daemon
 
 %define	snap	20030919
 Summary:	A client compatible with Gadu-Gadu
@@ -11,7 +9,7 @@ Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	1.4
-Release:	0.%{snap}.1
+Release:	0.%{snap}.2
 Epoch:		3
 License:	GPL v2
 Group:		Applications/Communications
@@ -21,11 +19,11 @@ Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?_with_voip:BuildRequires:	libgsm-devel}
+%{?with_voip:BuildRequires:	libgsm-devel}
 BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	%{_bindir}/perl
-%{?_with_python:BuildRequires:	python-devel}
+%{?with_python:BuildRequires:	python-devel}
 BuildRequires:	readline-devel
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -111,12 +109,12 @@ rm -f missing
 	--enable-shared \
 	--enable-static \
 	--with-pthread \
-	%{?_with_python:--with-python} \
-	%{?!_with_voip:--without-libgsm} \
-	%{?!_with_ioctl_daemon:--disable-ioctld}
+	%{?with_python:--with-python} \
+	%{?!with_voip:--without-libgsm} \
+	%{?!with_ioctl_daemon:--disable-ioctld}
 %{__make}
 
-%if %{?_with_ioctl_daemon:1}0
+%if %{with ioctl_daemon}
 cd src
 %{__make} ioctld
 cd ..
@@ -135,7 +133,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/
 
 rm examples/Makefile examples/Makefile.in examples/.cvsignore
 
-%if %{?_with_ioctl_daemon:1}%{?!_with_ioctl_daemon:0}
+%if %{with ioctl_daemon}
 install src/ioctld $RPM_BUILD_ROOT%{_bindir}
 %endif
 
@@ -153,7 +151,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/{7thguard,dcc,files,gdb,python,sim,themes,ui-ncurses,vars,voip}.txt
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
 %attr(755,root,root) %{_bindir}/e*
-%{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}
+%{?with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}
 %attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.conf
 %{_datadir}/ekg
 %{_mandir}/man1/*

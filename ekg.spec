@@ -42,7 +42,11 @@ support to your software.
 %description -n libgadu -l pl
 libgadu umo¿liwia ³atwe dodanie do ró¿nych aplikacji komunikacji
 bazuj±cej na protokole Gadu-Gadu.
- 
+
+%description -n libgadu -l de
+Mit libgadu ist es Ihnen möglich auf einfache Weise Gadu-Gadu
+Kommunikations-Unterstützung in Ihre Software einzubinden.
+
 %package -n libgadu-devel
 Summary:	libgadu library development
 Summary(pl):	Czê¶æ biblioteki libgadu dla programistów
@@ -59,6 +63,11 @@ documentation needed to develop application with libgadu.
 Pakiet libgadu-devel zawiera pliki nag³ówkowe i dokumentacjê,
 potrzebne do kompilowania aplikacji korzystaj±cych z libgadu.
 
+%description -n libgadu-devel -l de
+Das libgadu-devel Paket enthält Header-Files (Kopfzeilenordner)
+und die Dokumentation die Sie benötigen um mit libgadu
+Anwendungen zu entwickeln.
+
 %package -n libgadu-static
 Summary:	Static libgadu Library
 Summary(pl):	Statyczna biblioteka libgadu
@@ -72,6 +81,9 @@ Static libgadu library.
 
 %description -n libgadu-static -l pl
 Statyczna biblioteka libgadu.
+
+%description -n libgadu-static -l de
+Statisches libgadu Archiv.
 
 %prep
 %setup -q -n %{name}-%{snapshot}

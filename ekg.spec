@@ -15,6 +15,7 @@ Epoch:		3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
+# Source0-md5: 53b9a686b8df126e3c44df620e05abac
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf

@@ -98,7 +98,7 @@ Statisches libgadu Archiv.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q -n %{name}-%{version}rc3
+%setup -q 
 
 %build
 %{__aclocal}

@@ -7,10 +7,11 @@ Summary:	A client compatible with Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	0.9.0.%{snapshot}
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz
+Patch0:		%{name}-home_etc.patch
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
 BuildRequires:	ncurses-devel
@@ -70,6 +71,7 @@ Statyczna biblioteka libgadu.
 
 %prep
 %setup -q -n %{name}-%{snapshot}
+%patch0 -p1
 
 %build
 %{__autoconf}

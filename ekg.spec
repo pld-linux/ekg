@@ -2,7 +2,7 @@
 # Conditional build:
 # _with_ioctl_daemon - with ioctl_daemon (suid-root!)
 #
-%define		snapshot	20020205
+%define		snapshot	20020223
 Summary:	A client compatible with Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
@@ -27,6 +27,7 @@ Eksperymentalny Klient Gadu-Gadu.
 Summary:	libgadu library
 Summary(pl):	Biblioteka libgadu
 Group:		Libraries
+Obsoletes:	libgg
 
 %description -n libgadu
 libgadu is intended to make it easy to add Gadu-Gadu communication
@@ -41,6 +42,7 @@ Summary:	libgadu library development
 Summary(pl):	Czê¶æ biblioteki libgadu dla programistów
 Group:		Development/Libraries
 Requires:	libgadu
+Obsoletes:	libgg-devel
 
 %description -n libgadu-devel
 The libgadu-devel package contains the header files and some
@@ -55,6 +57,7 @@ Summary:	Static libgadu Library
 Summary(pl):	Statyczna biblioteka libgadu
 Group:		Development/Libraries
 Requires:	libgadu-devel
+Obsoletes:	libgg-static
 
 %description -n libgadu-static
 Static libgadu library.
@@ -68,6 +71,7 @@ Statyczna biblioteka libgadu.
 %build
 autoconf
 %configure \
+	--with-shared \
 	%{?!debug:--without-debug} \
 	%{?!_with_ioctl_daemon:--without-ioctl}
 

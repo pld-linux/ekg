@@ -5,20 +5,20 @@
 # _with_voip	        - with voip support (libgsm)
 #
 
-%define		snapshot 20030603
+%define		_snap	20030608
 
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	1.0
-Release:	3.%{snapshot}.1
+Version:	1.1
+Release:	%{_snap}.1
 Epoch:		3
 License:	GPL
 Group:		Applications/Communications
-# Source0-md5:	cb622c9953f3c0e81669a46af82251ac
-Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz
+Source0:	http://dev.null.pl/ekg/%{name}-%{_snap}.tar.gz
+# Source0-md5:	bd546f84f0be7906e802bf4ca3c30a99
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
@@ -102,7 +102,7 @@ Statisches libgadu Archiv.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q -n %{name}-%{snapshot}
+%setup -q -n %{name}-%{_snap}
 
 %build
 rm -f missing
@@ -114,7 +114,7 @@ rm -f missing
 	--enable-static \
 	--with-pthread \
 	%{?_with_python:--with-python} \
-	%{?_with_voip:--with-libgsm} \
+	%{?!_with_voip:--without-libgsm} \
 	%{?!_with_ioctl_daemon:--disable-ioctld}
 %{__make}
 

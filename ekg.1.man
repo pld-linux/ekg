@@ -37,4 +37,4 @@ after connect goes back
 after connect goes invisible
 .TP
 .BI \-p\ [\-\-private]
-after connect changes to private
+after connect changes to private mode

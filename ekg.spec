@@ -3,7 +3,7 @@
 %bcond_without	aspell		# without spell checking
 %bcond_without	voip		# without VoIP support
 %bcond_without	python		# with python support
-%bcond_with		pthread		# build with Posix threads support
+%bcond_with	pthread		# build with Posix threads support
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
 #
 %define		_snap	20050318
@@ -22,7 +22,6 @@ Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{_snap}.tar.gz
 # Source0-md5:	a25337b88263f808d2044e3f3b33673c
 Source1:	%{name}.conf
-Patch0:		%{name}-kadu-0_3_6.patch
 URL:		http://dev.null.pl/ekg/
 %{?with_aspell:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
@@ -38,7 +37,22 @@ BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-A client compatible with Gadu-Gadu.
+EKG ("Eksperymentalny Klient Gadu-Gadu") is an open source gadu-gadu
+client for UNIX systems. Gadu-Gadu is an instant messaging program,
+very popular in Poland.
+
+EKG features include:
+  - irssi-like ncurses interface
+  - sending and receiving files
+  - voice conversations
+  - launching shell commands on certain events
+  - reading input from pipe
+  - python scripting support
+  - speech synthesis (using an external program)
+  - encryption support
+
+Please note that the program is not internationalized and all messages
+are in Polish (although the commands are in English). 
 
 %description -l de
 Ein Cliente kompatibel mit Gadu-Gadu.
@@ -50,7 +64,22 @@ Un cliente compatible con Gadu-Gadu.
 Un cliente compatibile con Gadu-Gadu.
 
 %description -l pl
-Klient kompatybilny z Gadu-Gadu.
+EKG ("Eksperymentalny Klient Gadu-Gadu") jest open source'owym
+klientem gadu-gadu dla systemów uniksowych. Gadu-Gadu to popularny w
+polsce komunikator internetowy.
+
+Mo¿liwo¶ci EKG:
+  - interfejs u¿ytkownika podobny do irssi,
+  - wysy³anie i odbieranie plików,
+  - rozmowy g³osowe,
+  - uruchamianie poleceñ pow³oki w okre¶lonych sytuacjach,
+  - wczytywanie wej¶cia z potoku,
+  - wsparcie dla skryptów w jêzyku Python,
+  - synteza mowy (z u¿yciem zewnêtrznego programu),
+  - wsparcie dla szyfrowania.
+
+Program nie jest umiêdzynarodowiony i wszystkie komunikaty s± po
+polsku (jednak komendy s± w jêzyku angielskim).
 
 %package -n libgadu
 Summary:	libgadu library
@@ -127,7 +156,6 @@ Statyczna biblioteka libgadu.
 
 %prep
 %setup -q -n %{name}-%{_snap}
-#%patch0 -p1
 
 %build
 rm -f missing

@@ -4,14 +4,14 @@
 #
 %define		snapshot	20020529
 Summary:	A client compatible with Gadu-Gadu
-Summary(de):	Einen client kompatibel zu Gadu-Gadu 
+Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	0.9.0.%{snapshot}
-Release:	1	
+Release:	2
 License:	GPL
-Group:		Networking/Utilities
+Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
@@ -128,7 +128,7 @@ install src/ioctl_daemon $RPM_BUILD_ROOT%{_bindir}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -n libgadu -p /sbin/ldconfig
+%post	-n libgadu -p /sbin/ldconfig
 %postun -n libgadu -p /sbin/ldconfig
 
 %files

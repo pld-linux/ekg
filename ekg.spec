@@ -17,10 +17,10 @@ BuildRequires:	readline-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-A client compatible with Gadu-Gadu
+A client compatible with Gadu-Gadu.
 
 %description -l pl
-Eksperymentalny Klient Gadu-Gadu
+Eksperymentalny Klient Gadu-Gadu.
 
 %prep
 %setup -q -n %{name}-%{snapshot} 

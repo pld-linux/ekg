@@ -2,7 +2,7 @@
 # Conditional build:
 # _with_ioctl_daemon - with ioctl_daemon (suid-root!)
 #
-%define		snapshot	20020603
+%define		snapshot	20020605
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
@@ -116,6 +116,7 @@ install themes/*.theme $RPM_BUILD_ROOT%{_datadir}/ekg/themes
 
 install docs/ekg.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekg.1
 install docs/ekl2.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekl2.1
+install docs/ekl2.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekl2.1
 install docs/ekg.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekg.1
 
 # For libgadu-devel

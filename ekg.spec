@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	voip		# without VoIP support
+%bcond_without	aspell		# without spell checking feature
 %bcond_with	python		# with python support
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
 #
@@ -20,6 +21,7 @@ Source0:	http://dev.null.pl/ekg/%{name}-%{_snap}.tar.gz
 # Source0-md5:	a1744c77bf3a79b9b39ad36564e2b310
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
+%{?with_aspell:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_voip:BuildRequires:	libgsm-devel}
@@ -135,7 +137,8 @@ rm -f missing
 	--without-bind \
 	%{?with_python:--with-python} \
 	%{!?with_voip:--without-libgsm} \
-	%{!?with_ioctl_daemon:--disable-ioctld}
+	%{!?with_ioctl_daemon:--disable-ioctld} \
+	%{?with_aspell:--enable-aspell}
 
 %{__make} \
 	CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"

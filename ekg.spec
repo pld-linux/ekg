@@ -5,7 +5,7 @@
 # _with_voip	        - with voip support (libgsm)
 #
 
-%define		snapshot 20030521
+%define		snapshot 20030529
 
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu
@@ -17,8 +17,8 @@ Release:	3.%{snapshot}.1
 Epoch:		3
 License:	GPL
 Group:		Applications/Communications
+# Source0-md5:	4049340e57d0fc99e23662c6ce87c56f
 Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz
-# Source0-md5: 7050263dc0b5446bf8abf6ec32eebacc
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
@@ -105,6 +105,7 @@ Statyczna biblioteka libgadu.
 %setup -q -n %{name}-%{snapshot}
 
 %build
+rm -f missing
 %{__aclocal}
 %{__autoheader}
 %{__autoconf}

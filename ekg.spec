@@ -9,16 +9,19 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	20030113
-Release:	2
+Version:	20030130
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://bzium.eu.org/ekg/%{name}-%{version}.tar.gz
+Source1:	ekg.conf
 URL:		http://bzium.eu.org/ekg/
 BuildRequires:	perl
 BuildRequires:	ncurses-devel
 BuildRequires:	readline-devel
+BuildRequires:	zlib-devel
+BuildRequires:	openssl-devel
 %{?!_without_voip:BuildRequires: libgsm-devel}
 %{?_with_python:BuildRequires: python-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -96,13 +99,15 @@ Statyczna biblioteka libgadu.
 %setup -q
 
 %build
+%{__aclocal}
+%{__autoheader}
+%{__autoconf}
 %configure \
 	--enable-shared \
 	--enable-static \
 	--with-pthread \
 	%{?_with_python:--with-python} \
 	%{?_without_voip:--without-libgsm} \
-	%{?!debug:--without-debug} \
 	%{?!_with_ioctl_daemon:--disable-ioctld}
 %{__make}
 
@@ -111,12 +116,15 @@ Statyczna biblioteka libgadu.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_sysconfdir}
+
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install contrib/ekl2.pl $RPM_BUILD_ROOT%{_bindir}
 install contrib/ekl2.sh $RPM_BUILD_ROOT%{_bindir}
 install docs/ekl2.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekl2.1
 install docs/ekl2.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekl2.1
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/
 
 # For libgadu-devel
 
@@ -138,6 +146,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/e*
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.conf     
 %doc docs/{7thguard,dcc,emoticons,gdb,on,python,themes,ui,vars,voip}.txt
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
 %{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}

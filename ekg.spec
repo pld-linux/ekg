@@ -5,7 +5,7 @@
 %bcond_with	python		# with python support
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
 #
-%define snap    20040524
+%define snap    20040628
 
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Ein Cliente kompatibel mit Gadu-Gadu
@@ -14,12 +14,14 @@ Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.5
-Release:	0.%{snap}.3
+#Release:	0.%{snap}.3
+Release:	4
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://dev.null.pl/ekg/%{name}-%{snap}.tar.gz
-# Source0-md5:	5ce1e29047e4b7a1df7fef3a1abb1fd3
+#Source0:	http://dev.null.pl/ekg/%{name}-%{snap}.tar.gz
+Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
+# Source0-md5:	721ebfe7b13e9531b30d558465e6695f
 Source1:	%{name}.conf
 Patch0:		%{name}-kadu-0_3_6.patch
 URL:		http://dev.null.pl/ekg/
@@ -125,7 +127,8 @@ Biblioteca libgadu estática.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q -n %{name}-%{snap}
+#%setup -q -n %{name}-%{snap}
+%setup -q -n %{name}-%{version}
 #%patch0 -p1
 
 %build
@@ -146,7 +149,7 @@ rm -f missing
 	%{!?with_ioctl_daemon:--disable-ioctld}
 
 %{__make} \
-	CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"
+	CC="%{__cc} %{rpmcflags} -Wall -I%{_includedir}/ncurses"
 
 %if %{with ioctl_daemon}
 %{__make} -C src ioctld

@@ -14,7 +14,7 @@ Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.5
-Release:	0.%{snap}.2
+Release:	0.%{snap}.3
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
@@ -185,6 +185,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc docs/{7thguard,dcc,files,gdb,python,sim,themes,ui-ncurses,vars,voip}.txt
+%{?with_aspell:%doc docs/slownik.txt}
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
 %attr(755,root,root) %{_bindir}/e*
 %{?with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}

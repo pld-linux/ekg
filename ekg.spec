@@ -2,13 +2,13 @@
 # Conditional build:
 # _with_ioctl_daemon - with ioctl_daemon (suid-root!)
 #
-%define		snapshot	20020425
+%define		snapshot	20020501
 Summary:	A client compatible with Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	0.9.0.%{snapshot}
 Release:	1
-License:	GPL
+License:	LGPL
 Group:		Networking/Utilities
 Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz
 URL:		http://dev.null.pl/ekg/
@@ -112,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctl_daemon}
 %{_datadir}/ekg
 %doc docs/{7thguard,dcc,on,themes,vars}.txt.gz
-%doc ChangeLog.gz docs/{FAQ,README,TODO}.gz
+%doc ChangeLog.gz docs/{FAQ,README,TODO,ULOTKA}.gz
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
 

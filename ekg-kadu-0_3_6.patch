@@ -27,6 +27,15 @@ diff -urN ekg-1.4.org/lib/events.c ekg-1.4/lib/events.c
 diff -urN ekg-1.4.org/lib/libgadu.c ekg-1.4/lib/libgadu.c
 --- ekg-1.4.org/lib/libgadu.c	2003-10-27 22:29:12.000000000 +0100
 +++ ekg-1.4/lib/libgadu.c	2003-11-03 19:30:06.000000000 +0100
+@@ -70,7 +70,7 @@
+ #ifdef __GNUC__
+ __attribute__ ((unused))
+ #endif
+-= "$Id$";
++= "$Id$";
+ #endif 
+ 
+ /*
 @@ -1460,7 +1460,7 @@
  	}
  
@@ -38,21 +47,23 @@ diff -urN ekg-1.4.org/lib/libgadu.c ekg-1.4/lib/libgadu.c
  		return -1;
 diff -urN ekg-1.4.org/lib/libgadu.h ekg-1.4/lib/libgadu.h
 --- ekg-1.4.org/lib/libgadu.h	2003-11-17 23:44:22.000000000 +0100
-+++ ekg-1.4/lib/libgadu.h	2003-11-18 00:46:56.000000000 +0100
++++ ekg-1.4/lib/libgadu.h	2003-11-22 19:49:59.000000000 +0100
 @@ -1,4 +1,4 @@
 -/* $Id$ */
 +/* $Id$ */
  
  /*
   *  (C) Copyright 2001-2003 Wojtek Kaniewski <wojtekka@irc.pl>
-@@ -430,6 +430,7 @@
- 	GG_FAILURE_RESOLVING = 1,	/* nie znaleziono serwera */
- 	GG_FAILURE_CONNECTING,		/* nie mo¿na siê po³±czyæ */
- 	GG_FAILURE_INVALID,		/* serwer zwróci³ nieprawid³owe dane */
-+	GG_FAILURE_NEED_EMAIL,		/* serwer roz³±czy³ nas z pro¶b± o zmianê emaila */
- 	GG_FAILURE_READING,		/* zerwano po³±czenie podczas odczytu */
- 	GG_FAILURE_WRITING,		/* zerwano po³±czenie podczas zapisu */
- 	GG_FAILURE_PASSWORD,		/* nieprawid³owe has³o */
+@@ -436,7 +436,8 @@
+ 
+ 	GG_FAILURE_404, 		/* XXX nieu¿ywane */
+ 
+-	GG_FAILURE_TLS			/* b³±d negocjacji TLS */
++	GG_FAILURE_TLS,			/* b³±d negocjacji TLS */
++	GG_FAILURE_NEED_EMAIL          /* serwer roz³±czy³ nas z pro¶b± o zmianê emaila */
+ };
+ 
+ /*
 @@ -944,6 +945,7 @@
  } GG_PACKED;
  

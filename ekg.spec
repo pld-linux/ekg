@@ -75,6 +75,7 @@ Summary(es):	Biblioteca de desarrollo de libgadu
 Summary(pl):	Czê¶æ biblioteki libgadu dla programistów
 Group:		Development/Libraries
 Requires:	libgadu = %{epoch}:%{version}
+Requires:	openssh-devel
 Obsoletes:	libgg-devel
 License:	LGPL
 

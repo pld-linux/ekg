@@ -68,7 +68,7 @@ Statyczna biblioteka libgg.
 %setup -q -n %{name}-%{snapshot} 
 
 %build
-./configure \
+%configure \
 	%{?!debug:--without-debug}
 make
 

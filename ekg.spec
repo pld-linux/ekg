@@ -15,10 +15,9 @@ Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
 Patch0:		ekg-DESTDIR-temporary.patch
 URL:		http://dev.null.pl/ekg/
-BuildRequires:	autoconf
+BuildRequires:	libgsm-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	readline-devel
-BuildRequires:	libgsm-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -95,7 +94,6 @@ Statyczna biblioteka libgadu.
 %patch0 -p1
 
 %build
-%{__autoconf}
 %configure \
 	--with-shared \
 	%{?!debug:--without-debug} \
@@ -122,6 +120,9 @@ rm examples/Makefile examples/Makefile.in
 install src/ioctld $RPM_BUILD_ROOT%{_bindir}
 %endif
 
+cd $RPM_BUILD_ROOT%{_libdir}
+ln -sf libgadu.so.*.* libgadu.so
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -140,12 +141,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgadu
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgadu.so.*
+%attr(755,root,root) %{_libdir}/libgadu.so.*.*
 
 %files -n libgadu-devel
 %defattr(644,root,root,755)
 %doc docs/{7thguard,api,dcc-protocol,devel-hints,http}.txt docs/protocol.html
 %doc ChangeLog docs/{README,TODO} examples
+%{_libdir}/libgadu.so
 %{_includedir}/libgadu.h
 
 %files -n libgadu-static

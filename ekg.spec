@@ -13,7 +13,7 @@ Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.5
-Release:	0.%{snap}.1
+Release:	0.%{snap}.2
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
@@ -127,6 +127,8 @@ Statyczna biblioteka libgadu.
 #%patch0 -p1
 
 %build
+sed -i -e 's/#define.*GG_LIBGADU_VERSION.*/#define GG_LIBGADU_VERSION "%{version}.%{snap}"/g' lib/libgadu.h
+
 rm -f missing
 %{__aclocal} -I m4
 %{__autoheader}

@@ -20,11 +20,11 @@ Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?_with_voip:BuildRequires: libgsm-devel}
+%{?_with_voip:BuildRequires:	libgsm-devel}
 BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	%{_bindir}/perl
-%{?_with_python:BuildRequires: python-devel}
+%{?_with_python:BuildRequires:	python-devel}
 BuildRequires:	readline-devel
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

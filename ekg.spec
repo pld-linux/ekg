@@ -72,7 +72,7 @@ Statyczna biblioteka libgadu.
 %setup -q -n %{name}-%{snapshot}
 
 %build
-autoconf
+%{__autoconf}
 %configure \
 	--with-shared \
 	%{?!debug:--without-debug} \

@@ -7,7 +7,7 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	20020720
+Version:	20020807
 Release:	1
 Epoch:		1
 License:	GPL
@@ -93,9 +93,10 @@ Statyczna biblioteka libgadu.
 
 %build
 %configure \
-	--with-shared \
+	--enable-shared \
+	--enable-static \
 	%{?!debug:--without-debug} \
-	%{?!_with_ioctl_daemon:--without-ioctld}
+	%{?!_with_ioctl_daemon:--disable-ioctld}
 
 %{__make}
 

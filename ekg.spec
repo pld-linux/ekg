@@ -10,13 +10,13 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	20021028
+Version:	20021116
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
-URL:		http://dev.null.pl/ekg/
+Source0:	http://bzium.eu.org/ekg/%{name}-%{version}.tar.gz
+URL:		http://bzium.eu.org/ekg/
 BuildRequires:	perl
 BuildRequires:	ncurses-devel
 BuildRequires:	readline-devel

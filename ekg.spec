@@ -1,4 +1,4 @@
-%define        	snapshot	20011109
+%define        	snapshot	20011111
 Summary:	A client compatible with Gadu-Gadu 	
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu 	
 Name:		ekg		
@@ -50,6 +50,19 @@ needed to develop application with libgg.
 %description -n libgg-devel -l pl
 Pakiet libgg-devel zawiera pliki nag³ówkowe i dokumentacjê, potrzebne 
 do kompilowania aplikacji korzystaj±cych z libgg.
+
+%package -n libgg-static
+Summary:	Static libgg Library 
+Summary(pl):	Statyczna biblioteka libgg
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki 
+Requires:	libgg-devel 
+
+%description -n libgg-static
+Static libgg library.
+
+%description -n libgg-static -l pl
+Statyczna biblioteka libgg.
  
 %prep
 %setup -q -n %{name}-%{snapshot} 
@@ -59,6 +72,7 @@ do kompilowania aplikacji korzystaj±cych z libgg.
 	%{?!debug:--without-debug}
 make
 make shared
+make static 
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -68,13 +82,14 @@ install -d $RPM_BUILD_ROOT%{_libdir}
 
 install ekg 	$RPM_BUILD_ROOT%{_bindir}
 install libgg.so.* $RPM_BUILD_ROOT%{_libdir}
+install libgg.a $RPM_BUILD_ROOT%{_libdir}
 ln -s %{_libdir}/libgg.so.* $RPM_BUILD_ROOT%{_libdir}/libgg.so
 install libgg.h $RPM_BUILD_ROOT%{_includedir}
 
 gzip -9nf ChangeLog README docs/* 
 
-%post -p /sbin/ldconfig 
-%postun -p /sbin/ldconfig 
+%post -n libgg -p /sbin/ldconfig 
+%postun -n libgg -p /sbin/ldconfig 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -99,3 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/api.txt.gz
 %doc docs/7thguard.txt.gz
 %doc ChangeLog.gz README.gz
+
+%files -n libgg-static
+%defattr(644,root,root,755)
+%attr(644,root,root) %{_libdir}/libgg.a

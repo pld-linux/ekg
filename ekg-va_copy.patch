@@ -1,0 +1,47 @@
+--- lib/common.c.orig	Fri Dec 27 00:40:55 2002
++++ lib/common.c	Sat Jan 11 23:17:13 2003
+@@ -42,6 +42,8 @@
+ 
+ #ifndef GG_DEBUG_DISABLE
+ 
++#define va_copy(x...) __va_copy(x)
++
+ /*
+  * gg_debug() // funkcja wewnêtrzna
+  *
+@@ -81,6 +83,7 @@
+         int size = 0;
+ 	const char *start;
+ 	char *buf = NULL;
++	va_list ap2;
+ 
+ 	start = format; 
+ 
+@@ -92,21 +95,25 @@
+ 		size = 128;
+ 		do {
+ 			size *= 2;
++			va_copy(ap2, ap);
+ 			if (!(tmp = realloc(buf, size))) {
+ 				free(buf);
+ 				return NULL;
+ 			}
+ 			buf = tmp;
+-			res = vsnprintf(buf, size, format, ap);
++			res = vsnprintf(buf, size, format, ap2);
++			va_end(ap2);
+ 		} while (res == size - 1 || res == -1);
+ 	}
+ #else
+ 	{
+ 		char tmp[1];
++		va_copy(ap2, ap);
+ 		
+ 		/* libce Solarisa przy buforze NULL zawsze zwracaj± -1, wiêc
+ 		 * musimy podaæ co¶ istniej±cego jako cel printf()owania. */
+-		size = vsnprintf(tmp, sizeof(tmp), format, ap);
++		size = vsnprintf(tmp, sizeof(tmp), format, ap2);
++		va_end(ap2);
+ 		if (!(buf = malloc(size + 1)))
+ 			return NULL;
+ 	}

@@ -2,13 +2,13 @@
 # Conditional build:
 # _with_ioctl_daemon - with ioctl_daemon (suid-root!)
 #
-%define		snapshot	20020501
+%define		snapshot	20020506
 Summary:	A client compatible with Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	0.9.0.%{snapshot}
 Release:	1
-License:	LGPL
+License:	GPL
 Group:		Networking/Utilities
 Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz
 URL:		http://dev.null.pl/ekg/
@@ -28,6 +28,7 @@ Summary:	libgadu library
 Summary(pl):	Biblioteka libgadu
 Group:		Libraries
 Obsoletes:	libgg
+License:	LGPL
 
 %description -n libgadu
 libgadu is intended to make it easy to add Gadu-Gadu communication
@@ -43,6 +44,7 @@ Summary(pl):	Czê¶æ biblioteki libgadu dla programistów
 Group:		Development/Libraries
 Requires:	libgadu
 Obsoletes:	libgg-devel
+License:	LGPL
 
 %description -n libgadu-devel
 The libgadu-devel package contains the header files and some
@@ -58,6 +60,7 @@ Summary(pl):	Statyczna biblioteka libgadu
 Group:		Development/Libraries
 Requires:	libgadu-devel
 Obsoletes:	libgg-static
+License:	LGPL
 
 %description -n libgadu-static
 Static libgadu library.

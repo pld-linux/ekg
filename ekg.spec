@@ -10,7 +10,7 @@ Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	20030208
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Applications/Communications
@@ -63,7 +63,7 @@ bazuj±cej na protokole Gadu-Gadu.
 Summary:	libgadu library development
 Summary(pl):	Czê¶æ biblioteki libgadu dla programistów
 Group:		Development/Libraries
-Requires:	libgadu
+Requires:	libgadu = %{version}
 Obsoletes:	libgg-devel
 License:	LGPL
 
@@ -84,7 +84,7 @@ potrzebne do kompilowania aplikacji korzystaj±cych z libgadu.
 Summary:	Static libgadu Library
 Summary(pl):	Statyczna biblioteka libgadu
 Group:		Development/Libraries
-Requires:	libgadu-devel
+Requires:	libgadu-devel = %{version}
 Obsoletes:	libgg-static
 License:	LGPL
 

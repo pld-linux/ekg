@@ -114,10 +114,10 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/e*
-%{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctl_daemon}
-%{_datadir}/ekg
 %doc docs/{7thguard,dcc,on,themes,vars}.txt
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA}
+%{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctl_daemon}
+%{_datadir}/ekg
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
 

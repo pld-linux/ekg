@@ -69,8 +69,8 @@ Statyczna biblioteka libgadu.
 autoconf
 %configure \
 	%{?!debug:--without-debug} \
-	%{?!_with_ioctl_daemon:--without-ioctl} 
-	
+	%{?!_with_ioctl_daemon:--without-ioctl}
+
 %{__make}
 
 %install
@@ -112,6 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_mandir}/pl/man1/*
 
 %files -n libgadu
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgadu.so.*
 
 %files -n libgadu-devel
@@ -121,4 +122,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog.gz docs/{README,TODO}.gz
 
 %files -n libgadu-static
+%defattr(644,root,root,755)
 %attr(644,root,root) %{_libdir}/libgadu.a

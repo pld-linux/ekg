@@ -6,7 +6,7 @@
 %bcond_with	pthread		# build with Posix threads support
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
 #
-%define		_snap	20050318
+%define		_pre	rc1
 #
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Ein Cliente kompatibel mit Gadu-Gadu
@@ -14,13 +14,13 @@ Summary(es):	Un cliente compatible con Gadu-Gadu
 Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
-Version:	1.5
-Release:	6.%{_snap}.1
+Version:	1.6
+Release:	0.%{_pre}.1
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://dev.null.pl/ekg/%{name}-%{_snap}.tar.gz
-# Source0-md5:	a25337b88263f808d2044e3f3b33673c
+Source0:	http://dev.null.pl/ekg/%{name}-1.6%{_pre}.tar.gz
+# Source0-md5:	bce21bd6e896b71266afc30004f27402
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 %{?with_aspell:BuildRequires:	aspell-devel}
@@ -155,7 +155,7 @@ Biblioteca libgadu estática.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q -n %{name}-%{_snap}
+%setup -q -n %{name}-%{version}%{_pre}
 
 %build
 rm -f missing

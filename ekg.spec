@@ -1,7 +1,6 @@
 #
 # Conditional build:
 # _with_ioctl_daemon    - with ioctl_daemon (suid-root!)
-# _without_ncurses	- without new experimental ui
 # _with_python          - with python support
 # _without_voip	        - without voip support
 #
@@ -100,9 +99,7 @@ Statyczna biblioteka libgadu.
 %configure \
 	--enable-shared \
 	--enable-static \
-	--enable-force-readline \
 	%{?_with_python:--with-python} \
-	%{?!_without_ncurses:--enable-ui-ncurses} \
 	%{?_without_voip:--without-libgsm} \
 	%{?!debug:--without-debug} \
 	%{?!_with_ioctl_daemon:--disable-ioctld}

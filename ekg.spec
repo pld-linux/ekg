@@ -21,7 +21,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_voip:BuildRequires:	libgsm-devel}
 BuildRequires:	ncurses-devel
-BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	%{_bindir}/perl
 %{?with_python:BuildRequires:	python-devel}
 BuildRequires:	readline-devel

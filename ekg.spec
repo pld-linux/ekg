@@ -1,4 +1,4 @@
-%define        	snapshot	2001101402
+%define        	snapshot	20011027
 Summary:	A client compatible with Gadu-Gadu 	
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu 	
 Name:		ekg		
@@ -26,7 +26,8 @@ Eksperymentalny Klient Gadu-Gadu.
 %setup -q -n %{name}-%{snapshot} 
 
 %build
-./configure
+./configure \
+	%{?!debug:--without-debug}
 make
 
 %install

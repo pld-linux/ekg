@@ -113,7 +113,7 @@ Statyczna biblioteka libgadu.
 	%{?!_with_ioctl_daemon:--disable-ioctld}
 %{__make}
 
-%if {?_with_ioctl_daemon:1}0
+%if %{?_with_ioctl_daemon:1}0
 cd src 
 %{__make} ioctld
 cd ..

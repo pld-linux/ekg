@@ -27,7 +27,13 @@ Eksperymentalny Klient Gadu-Gadu.
 Summary:	libgg library
 Summary(pl):	Biblioteka libgg
 Group:		Libraries
+Group(de):	Libraries
+Group(es):	Bibliotecas
+Group(fr):	Librairies
 Group(pl):	Biblioteki
+Group(pt_BR):	Bibliotecas
+Group(ru):	Библиотеки
+Group(uk):	Б╕бл╕отеки
 
 %description -n libgg
 libgg is intended to make it easy to add Gadu-Gadu communication
@@ -41,7 +47,13 @@ bazuj╠cej na protokole Gadu-Gadu.
 Summary:	libgg library development
 Summary(pl):	CzЙ╤Ф biblioteki libgg dla programistСw
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	libgg
 
 %description -n libgg-devel
@@ -56,7 +68,13 @@ do kompilowania aplikacji korzystaj╠cych z libgg.
 Summary:	Static libgg Library
 Summary(pl):	Statyczna biblioteka libgg
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	libgg-devel
 
 %description -n libgg-static

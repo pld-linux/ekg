@@ -97,6 +97,10 @@ install themes/*.theme $RPM_BUILD_ROOT%{_datadir}/ekg/themes
 install docs/ekg.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekg.1
 install docs/ekg.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekg.1
 
+# For libgadu-devel
+
+rm examples/Makefile examples/Makefile.in
+
 %if %{?_with_ioctl_daemon:1}%{?!_with_ioctl_daemon:0}
 install src/ioctl_daemon $RPM_BUILD_ROOT%{_bindir}
 %endif
@@ -127,7 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_includedir}/libgadu.h
 %doc docs/{7thguard,api,devel-hints,protocol,dcc-protocol}.txt.gz
-%doc ChangeLog.gz docs/{README,TODO}.gz
+%doc ChangeLog.gz docs/{README,TODO}.gz examples
 
 %files -n libgadu-static
 %defattr(644,root,root,755)

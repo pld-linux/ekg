@@ -103,7 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/7thguard.txt.gz docs/themes.txt.gz 
 %doc docs/ekl.pl.gz docs/ekg.man.gz 
 %attr(755,root,root) %{_bindir}/* 
-%attr(644,root,root) %{_datadir}/ekg/*
+%{_datadir}/ekg
 %files -n libgg
 %defattr(644,root,root,755)
 %attr(644,root,root) %{_libdir}/libgg.so.*

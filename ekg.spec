@@ -3,9 +3,10 @@
 %bcond_with	ioctl_daemon
 
 Summary:	A client compatible with Gadu-Gadu
-Summary(de):	Einen client kompatibel zu Gadu-Gadu
-Summary(it):	Esperimentale cliente di Gadu-Gadu
-Summary(pl):	Eksperymentalny Klient Gadu-Gadu
+Summary(de):	Ein Cliente kompatibel mit Gadu-Gadu
+Summary(es):	Un cliente compatible con Gadu-Gadu
+Summary(it):	Un cliente compatibile con Gadu-Gadu
+Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.4
 Release:	1
@@ -32,16 +33,20 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 A client compatible with Gadu-Gadu.
 
 %description -l de
-Einen client kompatibel zu Gadu-Gadu.
+Ein Cliente kompatibel mit Gadu-Gadu.
+
+%description -l es
+Un cliente compatible con Gadu-Gadu.
 
 %description -l it
-Esperimentale cliente di Gadu-Gadu.
+Un cliente compatibile con Gadu-Gadu.
 
 %description -l pl
-Eksperymentalny Klient Gadu-Gadu.
+Klient kompatybilny z Gadu-Gadu.
 
 %package -n libgadu
 Summary:	libgadu library
+Summary(es):	Biblioteca libgadu
 Summary(pl):	Biblioteka libgadu
 Group:		Libraries
 Obsoletes:	libgg
@@ -55,12 +60,17 @@ support to your software.
 Mit libgadu ist es Ihnen möglich auf einfache Weise Gadu-Gadu
 Kommunikations-Unterstützung in Ihre Software einzubinden.
 
+%description -n libgadu -l es
+libgadu está pensada para facilitar añadirle comunicación vía
+Gadu-Gadu a su software.
+
 %description -n libgadu -l pl
 libgadu umo¿liwia ³atwe dodanie do ró¿nych aplikacji komunikacji
 bazuj±cej na protokole Gadu-Gadu.
 
 %package -n libgadu-devel
-Summary:	libgadu library development
+Summary:	libgadu development library
+Summary(es):	Biblioteca de desarrollo de libgadu
 Summary(pl):	Czê¶æ biblioteki libgadu dla programistów
 Group:		Development/Libraries
 Requires:	libgadu = %{epoch}:%{version}
@@ -76,12 +86,18 @@ Das libgadu-devel Paket enthält Header-Files (Kopfzeilenordner) und
 die Dokumentation die Sie benötigen um mit libgadu Anwendungen zu
 entwickeln.
 
+%description -n libgadu-devel -l es
+El paquete libgadu-devel contiene los ficheros de cabecera, juntos con
+una documentación, necesarios para desarrollar aplicaciones que usar
+libgadu.
+
 %description -n libgadu-devel -l pl
 Pakiet libgadu-devel zawiera pliki nag³ówkowe i dokumentacjê,
 potrzebne do kompilowania aplikacji korzystaj±cych z libgadu.
 
 %package -n libgadu-static
-Summary:	Static libgadu Library
+Summary:	Static libgadu library
+Summary(es):	Biblioteca libgadu estática
 Summary(pl):	Statyczna biblioteka libgadu
 Group:		Development/Libraries
 Requires:	libgadu-devel = %{epoch}:%{version}
@@ -93,6 +109,9 @@ Static libgadu library.
 
 %description -n libgadu-static -l de
 Statisches libgadu Archiv.
+
+%description -n libgadu-static -l es
+Biblioteca libgadu estática.
 
 %description -n libgadu-static -l pl
 Statyczna biblioteka libgadu.

@@ -10,7 +10,7 @@ Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
 Version:	1.0
-Release:	1rc2
+Release:	2rc2
 Epoch:		2
 License:	GPL
 Group:		Applications/Communications
@@ -113,8 +113,15 @@ Statyczna biblioteka libgadu.
 	%{?!_with_ioctl_daemon:--disable-ioctld}
 %{__make}
 
-%{?_with_ioctl_daemon: (cd src && %{__make} ioctld )}
-( cd docs/api && ./make.pl )
+%if {?_with_ioctl_daemon:1}0
+cd src 
+%{__make} ioctld
+cd ..
+%endif
+
+cd docs/api
+./make.pl
+cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT

@@ -2,7 +2,7 @@
 # Conditional build:
 # _with_ioctl_daemon - with ioctl_daemon (suid-root!)
 #
-%define		snapshot	20020529
+%define		snapshot	20020603
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu

@@ -25,7 +25,7 @@ BuildRequires:	automake
 %{?with_voip:BuildRequires:	libgsm-devel}
 BuildRequires:	libjpeg-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	openssl-devel >= 0.9.7c
+BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	%{_bindir}/perl
 %{?with_python:BuildRequires:	python-devel}
 BuildRequires:	readline-devel

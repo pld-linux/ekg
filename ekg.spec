@@ -15,7 +15,7 @@ Epoch:		1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://bzium.eu.org/ekg/%{name}-%{version}.tar.gz
-Source1:	ekg.conf
+Source1:	%{name}.conf
 URL:		http://bzium.eu.org/ekg/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -148,7 +148,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/e*
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.conf     
+%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.conf
 %doc docs/{7thguard,dcc,emoticons,gdb,on,python,themes,ui,vars,voip}.txt
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
 %{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}

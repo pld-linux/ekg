@@ -7,16 +7,18 @@ Summary(de):	Einen client kompatibel zu Gadu-Gadu
 Summary(it):	Esperimentale cliente di Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
-Version:	20020813
+Version:	20020820
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
 URL:		http://dev.null.pl/ekg/
+BuildRequires:	perl
 BuildRequires:	libgsm-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	readline-devel
+BuildRequires:	python-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -92,12 +94,13 @@ Statyczna biblioteka libgadu.
 %setup -q
 
 %build
+perl -pi -e "s/python2.1/python2.2/" configure
 %configure \
 	--enable-shared \
 	--enable-static \
+	--with-python \
 	%{?!debug:--without-debug} \
 	%{?!_with_ioctl_daemon:--disable-ioctld}
-
 %{__make}
 
 ( cd docs/api && ./make.pl )
@@ -131,7 +134,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/e*
-%doc docs/{7thguard,dcc,emoticons,gdb,on,themes,ui,vars,voip}.txt
+%doc docs/{7thguard,dcc,emoticons,gdb,on,python,themes,ui,vars,voip}.txt
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
 %{?_with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}
 %{_datadir}/ekg

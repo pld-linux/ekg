@@ -1,4 +1,4 @@
-%define		snapshot	20020102
+%define		snapshot	20020123
 Summary:	A client compatible with Gadu-Gadu
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu
 Name:		ekg
@@ -11,8 +11,6 @@ Group(es):	Red/Utilitarios
 Group(pl):	Sieciowe/Narzêdzia
 Group(pt_BR):	Rede/Utilitários
 Source0:	http://dev.null.pl/ekg/%{name}-%{snapshot}.tar.gz
-Source1:	ekg.1.man
-Patch0:		ekg-man_bug.patch
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	ncurses-devel
 BuildRequires:	readline-devel
@@ -68,10 +66,9 @@ Statyczna biblioteka libgg.
 
 %prep
 %setup -q -n %{name}-%{snapshot}
-%patch0 -p0
 
 %build
-%configure \
+%configure2_13 \
 	%{?!debug:--without-debug}
 %{__make}
 
@@ -87,8 +84,8 @@ install lib/libgg.so.* $RPM_BUILD_ROOT%{_libdir}
 
 install themes/*.theme $RPM_BUILD_ROOT%{_datadir}/ekg
 
-install docs/ekg.man $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekg.1
-install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1/ekg.1
+install docs/ekg.man.pl $RPM_BUILD_ROOT%{_mandir}/pl/man1/ekg.1
+install docs/ekg.man.en $RPM_BUILD_ROOT%{_mandir}/man1/ekg.1
 
 gzip -9nf ChangeLog docs/*
 

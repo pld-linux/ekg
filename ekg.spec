@@ -1,4 +1,4 @@
-%define        	snapshot	20011201
+%define        	snapshot	20011208
 Summary:	A client compatible with Gadu-Gadu 	
 Summary(pl):	Eksperymentalny Klient Gadu-Gadu 	
 Name:		ekg		
@@ -113,7 +113,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/protocol.txt.gz
 %doc docs/api.txt.gz
 %doc docs/7thguard.txt.gz
-%doc ChangeLog.gz README.gz
+%doc ChangeLog.gz docs/README.gz
 
 %files -n libgg-static
 %defattr(644,root,root,755)

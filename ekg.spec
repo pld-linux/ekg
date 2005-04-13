@@ -12,13 +12,13 @@ Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.6
-%define	_snap	20050112
+%define	_snap	20050412
 Release:	0.%{_snap}
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{_snap}.tar.gz
-# Source0-md5:	c7c2f7d581df85800de7398888aafd5d
+# Source0-md5:	080589e359c3f2f5793ccdb1a1ed1fa1
 Source1:	%{name}.conf
 #Patch0:		%{name}-kadu-0_3_6.patch
 URL:		http://dev.null.pl/ekg/

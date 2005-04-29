@@ -31,7 +31,10 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	%{_bindir}/perl
-%{?with_python:BuildRequires:	python-devel}
+%if %{with python}
+BuildRequires:	python
+BuildRequires:	python-devel
+%endif
 BuildRequires:	readline-devel
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

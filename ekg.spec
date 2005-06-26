@@ -3,7 +3,7 @@
 %bcond_without	aspell		# without spell checking
 %bcond_without	voip		# without VoIP support
 %bcond_without	python		# with python support
-%bcond_with	pthread		# build with Posix threads support
+%bcond_without	pthread		# build with Posix threads support
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
 #
 %define		_pre	rc1

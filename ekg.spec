@@ -23,19 +23,19 @@ Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.6
-%if %{with yesterday_snapshot} 
-Release:        0.%{_snap}.1
-%else   
-Release:        0.%{_pre}.1
-%endif 
+%if %{with yesterday_snapshot}
+Release:	0.%{_snap}.1
+%else
+Release:	0.%{_pre}.1
+%endif
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
-%if %{with yesterday_snapshot} 
-Source0:        http://dev.null.pl/ekg/%{name}-%{_snap}.tar.gz 
-%else 
+%if %{with yesterday_snapshot}
+Source0:	http://dev.null.pl/ekg/%{name}-%{_snap}.tar.gz
+%else
 Source0:	http://dev.null.pl/ekg/%{name}-1.6%{_pre}.tar.gz
-%endif 
+%endif
 # Source0-md5:	bce21bd6e896b71266afc30004f27402
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
@@ -71,7 +71,7 @@ EKG features include:
   - encryption support
 
 Please note that the program is not internationalized and all messages
-are in Polish (although the commands are in English). 
+are in Polish (although the commands are in English).
 
 %description -l de
 Ein Cliente kompatibel mit Gadu-Gadu.

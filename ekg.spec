@@ -12,7 +12,7 @@
 %if %{with yesterday_snapshot}
 %define		_snap %(date +%%Y%%m%%d -d yesterday)
 %else
-%define		_pre	rc1
+%define		_pre	rc3
 %endif
 
 #
@@ -36,7 +36,7 @@ Source0:	http://dev.null.pl/ekg/%{name}-%{_snap}.tar.gz
 %else
 Source0:	http://dev.null.pl/ekg/%{name}-1.6%{_pre}.tar.gz
 %endif
-# Source0-md5:	bce21bd6e896b71266afc30004f27402
+# Source0-md5:	421b8874e4b1c16fd7a17f08bec9c3fc
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 %{?with_aspell:BuildRequires:	aspell-devel}
@@ -201,7 +201,7 @@ rm -f missing
 	%{?with_ioctl_daemon:--enable-ioctld}
 
 %{__make} \
-	CC="%{__cc} %{rpmcflags} -Wall -I%{_includedir}/ncurses"
+	CC="%{__cc}  -Wall -I%{_includedir}/ncurses"
 
 %if %{with ioctl_daemon}
 %{__make} -C src ioctld

@@ -1,8 +1,8 @@
+# TODO
+# - security  http://security.gentoo.org/glsa/glsa-200507-26.xml
 #
 # Conditional build:
-%bcond_with	yesterday_snapshot	# Build most current ekg snapshot
-					# (must use ./builder -n5 or plain rpmbuild)
-
+%bcond_with	yesterday_snapshot	# Build most current ekg snapshot (must use ./builder -n5 or plain rpmbuild)
 %bcond_without	aspell		# without spell checking
 %bcond_without	voip		# without VoIP support
 %bcond_without	python		# with python support
@@ -14,7 +14,6 @@
 %else
 %define		_pre	rc3
 %endif
-
 #
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Ein Cliente kompatibel mit Gadu-Gadu

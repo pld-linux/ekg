@@ -1,5 +1,3 @@
-# TODO
-# - security  http://security.gentoo.org/glsa/glsa-200507-26.xml
 #
 # Conditional build:
 %bcond_with	yesterday_snapshot	# Build most current ekg snapshot (must use ./builder -n5 or plain rpmbuild)

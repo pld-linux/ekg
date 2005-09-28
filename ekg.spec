@@ -82,7 +82,7 @@ Un cliente compatibile con Gadu-Gadu.
 %description -l pl
 EKG ("Eksperymentalny Klient Gadu-Gadu") jest open source'owym
 klientem gadu-gadu dla systemów uniksowych. Gadu-Gadu to popularny w
-polsce komunikator internetowy.
+Polsce komunikator internetowy.
 
 Mo¿liwo¶ci EKG:
   - interfejs u¿ytkownika podobny do irssi,

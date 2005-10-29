@@ -1,17 +1,10 @@
 #
 # Conditional build:
-%bcond_with	yesterday_snapshot	# Build most current ekg snapshot (must use ./builder -n5 or plain rpmbuild)
 %bcond_without	aspell		# without spell checking
 %bcond_without	voip		# without VoIP support
 %bcond_without	python		# with python support
 %bcond_without	pthread		# build with Posix threads support
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
-#
-%if %{with yesterday_snapshot}
-%define		_snap %(date +%%Y%%m%%d -d yesterday)
-%else
-%define		_pre	rc3
-%endif
 #
 Summary:	A client compatible with Gadu-Gadu
 Summary(de):	Ein Cliente kompatibel mit Gadu-Gadu
@@ -20,20 +13,12 @@ Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.6
-%if %{with yesterday_snapshot}
-Release:	0.%{_snap}.1
-%else
-Release:	0.%{_pre}.1
-%endif
+Release:	1
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
-%if %{with yesterday_snapshot}
-Source0:	http://dev.null.pl/ekg/%{name}-%{_snap}.tar.gz
-%else
-Source0:	http://dev.null.pl/ekg/%{name}-1.6%{_pre}.tar.gz
-%endif
-# Source0-md5:	421b8874e4b1c16fd7a17f08bec9c3fc
+Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
+# Source0-md5:	1094eee5062d9b9900c4b28bd68fb564
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
 %{?with_aspell:BuildRequires:	aspell-devel}
@@ -171,12 +156,7 @@ Biblioteca libgadu estática.
 Statyczna biblioteka libgadu.
 
 %prep
-%if %{with yesterday_snapshot}
-%setup -q -n %{name}-%{_snap}
-%else
-%setup -q -n %{name}-%{version}%{_pre}
-%endif
-
+%setup -q
 
 %build
 rm -f missing

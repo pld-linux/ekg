@@ -21,6 +21,7 @@ Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
 # Source0-md5:	1094eee5062d9b9900c4b28bd68fb564
 Source1:	%{name}.conf
 URL:		http://dev.null.pl/ekg/
+BuildRequires:	%{_bindir}/perl
 %{?with_aspell:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -28,7 +29,6 @@ BuildRequires:	automake
 BuildRequires:	libjpeg-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel >= 0.9.7d
-BuildRequires:	%{_bindir}/perl
 %if %{with python}
 BuildRequires:	python
 BuildRequires:	python-devel
@@ -221,7 +221,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
 %attr(755,root,root) %{_bindir}/e*
 %{?with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}
-%attr(644,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.conf
+%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*.conf
 %{_datadir}/ekg
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*

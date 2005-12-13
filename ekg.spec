@@ -178,7 +178,7 @@ rm -f missing
 	%{?with_ioctl_daemon:--enable-ioctld}
 
 %{__make} \
-	CC="%{__cc}  -Wall -I%{_includedir}/ncurses"
+	CC="%{__cc}  -Wall -I/usr/include/ncurses"
 
 %if %{with ioctl_daemon}
 %{__make} -C src ioctld

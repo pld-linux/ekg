@@ -20,6 +20,7 @@ Group:		Applications/Communications
 Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
 # Source0-md5:	1094eee5062d9b9900c4b28bd68fb564
 Source1:	%{name}.conf
+Patch0:		%{name}-jpeg.patch
 URL:		http://dev.null.pl/ekg/
 BuildRequires:	%{_bindir}/perl
 %{?with_aspell:BuildRequires:	aspell-devel}
@@ -35,6 +36,7 @@ BuildRequires:	python-devel
 %endif
 BuildRequires:	readline-devel
 BuildRequires:	zlib-devel
+Requires:	libgadu = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -157,13 +159,14 @@ Statyczna biblioteka libgadu.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-rm -f missing
 %{__aclocal} -I m4
 %{__autoheader}
 %{__autoconf}
 %configure \
+	--enable-dynamic \
 	--enable-shared \
 	--enable-static \
 %if %{with pthread}
@@ -237,7 +240,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgadu.so
 %{_includedir}/libgadu.h
 %{_includedir}/libgadu-config.h
-%{_pkgconfigdir}/*
+%{_pkgconfigdir}/libgadu.pc
 %{_examplesdir}/libgadu-%{version}
 
 %files -n libgadu-static

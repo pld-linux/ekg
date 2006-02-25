@@ -181,7 +181,7 @@ Statyczna biblioteka libgadu.
 	%{?with_ioctl_daemon:--enable-ioctld}
 
 %{__make} \
-	CC="%{__cc}  -Wall -I/usr/include/ncurses"
+	CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"
 
 %if %{with ioctl_daemon}
 %{__make} -C src ioctld

@@ -17,11 +17,11 @@ Release:	1
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://dev.null.pl/ekg/%{name}-%{version}.tar.gz
+Source0:	http://ekg.chmurka.net/%{name}-%{version}.tar.gz
 # Source0-md5:	1094eee5062d9b9900c4b28bd68fb564
 Source1:	%{name}.conf
 Patch0:		%{name}-jpeg.patch
-URL:		http://dev.null.pl/ekg/
+URL:		http://ekg.chmurka.net/
 BuildRequires:	%{_bindir}/perl
 %{?with_aspell:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf

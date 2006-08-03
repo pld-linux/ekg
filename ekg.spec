@@ -21,6 +21,7 @@ Source0:	http://ekg.chmurka.net/%{name}-%{version}.tar.gz
 # Source0-md5:	1094eee5062d9b9900c4b28bd68fb564
 Source1:	%{name}.conf
 Patch0:		%{name}-jpeg.patch
+Patch1:		%{name}-LDFLAGS.patch
 URL:		http://ekg.chmurka.net/
 BuildRequires:	%{_bindir}/perl
 %{?with_aspell:BuildRequires:	aspell-devel}
@@ -160,12 +161,14 @@ Statyczna biblioteka libgadu.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__aclocal} -I m4
 %{__autoheader}
 %{__autoconf}
 %configure \
+	CFLAGS_LIBGADU="%{rpmcflags}" \
 	--enable-dynamic \
 	--enable-shared \
 	--enable-static \
@@ -180,8 +183,7 @@ Statyczna biblioteka libgadu.
 	%{?with_aspell:--enable-aspell} \
 	%{?with_ioctl_daemon:--enable-ioctld}
 
-%{__make} \
-	CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"
+%{__make}
 
 %if %{with ioctl_daemon}
 %{__make} -C src ioctld

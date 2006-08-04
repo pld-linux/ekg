@@ -1,14 +1,105 @@
-diff -Nur ekg-1.6/lib/Makefile.in ekg-1.6.LDFLAGS/lib/Makefile.in
---- ekg-1.6/lib/Makefile.in	2005-06-25 08:41:07.000000000 +0200
-+++ ekg-1.6.LDFLAGS/lib/Makefile.in	2006-08-03 03:43:38.000000000 +0200
-@@ -12,6 +12,7 @@
+diff -Nur ekg-1.6.orig/configure.in ekg-1.6.LDFLAGS/configure.in
+--- ekg-1.6.orig/configure.in	2005-05-03 02:55:21.000000000 +0200
++++ ekg-1.6.LDFLAGS/configure.in	2006-08-04 16:31:59.000000000 +0200
+@@ -282,7 +282,7 @@
+ 
+ if test "x$have_openssl" = "xyes"; then
+ 	OBJS="$OBJS simlite.o"
+-	LDFLAGS="$OPENSSL_LIBS $LDFLAGS"
++	LIBS="$OPENSSL_LIBS $LIBS"
+ 	LIBS_LIBGADU="$LIBS_LIBGADU $OPENSSL_LIBS"
+ 	CFLAGS="$CFLAGS $OPENSSL_INCLUDES"
+ 	CFLAGS_LIBGADU="$CFLAGS_LIBGADU $OPENSSL_INCLUDES"
+@@ -376,7 +376,7 @@
+ 		AC_MSG_ERROR([You need ncurses and ncurses-devel packages.])
+ 	fi
+ 
+-	LDFLAGS="$LDFLAGS $CURSES_LIBS"
++	LIBS="$LIBS $CURSES_LIBS"
+ 	CFLAGS="$CFLAGS $CURSES_INCLUDES"
+ 	echo "CURSES_INCLUDES=$CURSES_INCLUDES"
+ fi
+@@ -389,11 +389,11 @@
+ 		TERMCAP_LIB=""
+ 	else
+ 		AC_CHECK_LIB(termcap, tgetent, [TERMCAP_LIB="-ltermcap"])
+-		LDFLAGS="$LDFLAGS $TERMCAP_LIB"
++		LIBS="$LIBS $TERMCAP_LIB"
+ 	fi
+ 		if test "x$TERMCAP_LIB" = "x" -a "x$CURSES_LIBS" = "x"; then
+ 		AC_CHECK_NCURSES
+-		LDFLAGS="$LDFLAGS $CURSES_LIBS"
++		LIBS="$LIBS $CURSES_LIBS"
+ 		CFLAGS="$CFLAGS $CURSES_INCLUDES"
+ 	fi
+      
+@@ -403,7 +403,7 @@
+ 		AC_MSG_ERROR([You need both readline and readline-devel packages.])
+ 	fi
+ 
+-	LDFLAGS="$READLINE_LIBS $LDFLAGS"
++	LIBS="$READLINE_LIBS $LIBS"
+ 	CFLAGS="$CFLAGS $READLINE_INCLUDES"
+ 
+ 	AC_CHECK_FUNCS([rl_set_prompt rl_filename_completion_function rl_get_screen_size rl_set_key rl_bind_key_in_map])
+@@ -435,7 +435,7 @@
+ 		AC_CHECK_HEADERS(linux/soundcard.h,
+ 		[
+ 			AC_DEFINE(HAVE_VOIP, 1, [define if you want VOIP support])
+-			LDFLAGS="-lgsm $LDFLAGS"
++			LIBS="-lgsm $LIBS"
+ 			OBJS="$OBJS voice.o"
+ 		])
+ 	fi
+@@ -454,7 +454,7 @@
+ 		AC_CHECK_HEADERS(jpeglib.h,
+ 		[
+ 			AC_DEFINE(HAVE_LIBJPEG, 1, [define if you have libjpeg])
+-			LDFLAGS="-ljpeg $LDFLAGS"
++			LIBS="-ljpeg $LIBS"
+ 			have_libjpeg=yes
+ 		])
+ 	])
+@@ -468,7 +468,7 @@
+   
+ if test "x$have_python" = "xyes"; then
+ 	OBJS="$OBJS python.o"
+-	LDFLAGS="$PYTHON_LIBS $LDFLAGS"
++	LIBS="$PYTHON_LIBS $LIBS"
+ 	CFLAGS="$CFLAGS $PYTHON_INCLUDES"
+ fi
+ 
+@@ -485,7 +485,7 @@
+ 		AC_CHECK_HEADERS(zlib.h,
+ 		[
+ 			AC_DEFINE(HAVE_ZLIB, 1, [define if you want compressed logs])
+-			LDFLAGS="-lz $LDFLAGS"
++			LIBS="-lz $LIBS"
+ 			have_zlib=yes
+ 		])
+ 	])
+@@ -529,7 +529,7 @@
+  	    if test "x$have_aspell_libs" = "xyes"; then
+ 		if test "x$ui_ncurses_default" = "xyes"; then    
+  		    AC_DEFINE(WITH_ASPELL, 1, [define if you want aspell support])
+- 		    LDFLAGS="$LDFLAGS -laspell"		
++ 		    LIBS="$LIBS -laspell"		
+ 		fi
+ 	    else 
+ 	        enable_aspell=no
+diff -Nur ekg-1.6.orig/lib/Makefile.in ekg-1.6.LDFLAGS/lib/Makefile.in
+--- ekg-1.6.orig/lib/Makefile.in	2005-06-25 08:41:07.000000000 +0200
++++ ekg-1.6.LDFLAGS/lib/Makefile.in	2006-08-04 16:32:35.000000000 +0200
+@@ -12,7 +12,8 @@
  
  CC = @CC@ 
  CFLAGS = @CFLAGS_LIBGADU@ -I. -I.. -Wall
+-LIBS = @LIBS_LIBGADU@
 +LDFLAGS = @LDFLAGS@
- LIBS = @LIBS_LIBGADU@
++LIBS = @LIBS@ @LIBS_LIBGADU@
  
  MAKE = @MAKE@
+ AR = @AR@
 @@ -56,7 +57,7 @@
  shared:	dep $(SHARED)
  
@@ -17,4 +108,20 @@ diff -Nur ekg-1.6/lib/Makefile.in ekg-1.6.LDFLAGS/lib/Makefile.in
 +	$(CC) $(LDFLAGS) -shared -Wl,-soname,libgadu.so.$(VERSION_MAJOR) -o $(SHARED) $(LOBJS) $(LIBS) -lc
  	$(LN_S) -f $(SHARED) $(SHAREDM)
  	$(LN_S) -f $(SHARED) $(SHAREDMM)
+ 
+diff -Nur ekg-1.6.orig/src/Makefile.in ekg-1.6.LDFLAGS/src/Makefile.in
+--- ekg-1.6.orig/src/Makefile.in	2003-05-19 15:36:41.000000000 +0200
++++ ekg-1.6.LDFLAGS/src/Makefile.in	2006-08-04 16:33:31.000000000 +0200
+@@ -26,10 +26,10 @@
+ all:	dep ekg @ioctld@
+ 
+ ekg:	$(OBJS) @libgadu_a@
+-	$(CC) $(CFLAGS) -o ekg $(OBJS) -L../lib @lgadu@ @libgadu_a@ $(LDFLAGS) $(LIBS)
++	$(CC) $(LDFLAGS) $(CFLAGS) -o ekg $(OBJS) -L../lib @lgadu@ @libgadu_a@ $(LIBS)
+ 
+ ioctld:	ioctld.c
+-	$(CC) $(CFLAGS) ioctld.c -o ioctld $(LIBS) @IOCTLD_OBJS@
++	$(CC) $(LDFLAGS) $(CFLAGS) ioctld.c -o ioctld $(LIBS) @IOCTLD_OBJS@
+ 
+ dep:	.depend
  

@@ -1,0 +1,86 @@
+Simple patch that introduces new variable - `lock_reason'. Setting it to 1 causes
+ekg to ignore any attempts to change status description still allowing to change
+status itself (busy/available/...).
+
+Sounds stupid, but I'm really attached to my current status ...
+
+diff -burN ekg-1.6.orig/src/commands.c ekg-1.6/src/commands.c
+--- ekg-1.6.orig/src/commands.c	2006-08-18 00:20:55.000000000 +0200
++++ ekg-1.6/src/commands.c	2006-08-18 00:42:10.000000000 +0200
+@@ -448,16 +448,31 @@
+ 			return -1;
+ 	}
+ 
+-	if (!strcasecmp(name, "_descr"))
++	if (!strcasecmp(name, "_descr")) {
++		if (config_lock_reason)
++			change_status(config_status, config_reason, q);
++		else
+ 		change_status(config_status, params[0], q);
++	}
+ 
+-	if (!strcasecmp(name, "away"))
++	if (!strcasecmp(name, "away")) {
++		if (config_lock_reason)
++			change_status(GG_STATUS_BUSY, config_reason, q);
++		else
+ 		change_status(GG_STATUS_BUSY, params[0], q);
++	}
+ 
+-	if (!strcasecmp(name, "invisible"))
++	if (!strcasecmp(name, "invisible")) {
++		if (config_lock_reason)
++			change_status(GG_STATUS_INVISIBLE, config_reason, q);
++		else
+ 		change_status(GG_STATUS_INVISIBLE, params[0], q);
++	}
+ 
+ 	if (!strcasecmp(name, "back")) {
++		if (config_lock_reason)
++			change_status(GG_STATUS_AVAIL, config_reason, q);
++		else
+ 		change_status(GG_STATUS_AVAIL, params[0], q);
+ 		sms_away_free();
+ 	}
+@@ -489,7 +504,7 @@
+ 		if (sess && sess->state == GG_STATE_CONNECTED) {
+ 			gg_debug(GG_DEBUG_MISC, "-- config_status = 0x%.2x\n", config_status);
+ 
+-			if (config_reason) {
++			if (config_reason && !config_lock_reason) {
+ 				iso_to_cp(config_reason);
+ 				gg_change_status_descr(sess, config_status, config_reason);
+ 				cp_to_iso(config_reason);
+diff -burN ekg-1.6.orig/src/stuff.c ekg-1.6/src/stuff.c
+--- ekg-1.6.orig/src/stuff.c	2006-08-18 00:20:55.000000000 +0200
++++ ekg-1.6/src/stuff.c	2006-08-18 00:35:53.000000000 +0200
+@@ -171,6 +171,7 @@
+ int config_display_sent = 1;
+ int config_sort_windows = 0;
+ int config_keep_reason = 0;
++int config_lock_reason = 0;
+ int config_enter_scrolls = 0;
+ int server_index = 0;
+ char *config_audio_device = NULL;
+diff -burN ekg-1.6.orig/src/stuff.h ekg-1.6/src/stuff.h
+--- ekg-1.6.orig/src/stuff.h	2006-08-18 00:20:55.000000000 +0200
++++ ekg-1.6/src/stuff.h	2006-08-18 00:36:00.000000000 +0200
+@@ -279,6 +279,7 @@
+ int config_last_sysmsg;
+ int config_last_sysmsg_changed;
+ char *config_local_ip;
++int config_lock_reason;
+ int config_log;
+ int config_log_ignored;
+ char *config_log_path;
+diff -burN ekg-1.6.orig/src/vars.c ekg-1.6/src/vars.c
+--- ekg-1.6.orig/src/vars.c	2006-08-18 00:20:55.000000000 +0200
++++ ekg-1.6/src/vars.c	2006-08-18 00:43:59.000000000 +0200
+@@ -247,6 +247,7 @@
+ 	variable_add("last", "la", VAR_MAP, 1, &config_last, NULL, variable_map(4, 0, 0, "none", 1, 2, "all", 2, 1, "separate", 4, 0, "sent"), NULL);
+ 	variable_add("last_size", "ls", VAR_INT, 1, &config_last_size, NULL, NULL, NULL);
+ 	variable_add("local_ip", "ld", VAR_STR, 1, &config_local_ip, changed_local_ip, NULL, NULL);
++	variable_add("lock_reason", "lr", VAR_INT, 1, &config_lock_reason, NULL, NULL, NULL);
+ 	variable_add("log", "lo", VAR_MAP, 1, &config_log, NULL, variable_map(4, 0, 0, "none", 1, 2, "file", 2, 1, "dir", 4, 0, "gzip"), NULL);
+ 	variable_add("log_ignored", "li", VAR_INT, 1, &config_log_ignored, NULL, NULL, dd_log);
+ 	variable_add("log_status", "lS", VAR_INT, 1, &config_log_status, NULL, variable_map(3, 0, 0, "no", 1, 2, "yes", 2, 1, "descr"), dd_log);

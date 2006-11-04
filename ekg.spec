@@ -11,14 +11,14 @@ Summary(es):	Un cliente compatible con Gadu-Gadu
 Summary(it):	Un cliente compatibile con Gadu-Gadu
 Summary(pl):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
-Version:	1.6
-%define	_snap	20050412
+Version:	1.7
+%define _snap rc2
 Release:	0.%{_snap}
-Epoch:		4
+Epoch:		5
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://dev.null.pl/ekg/%{name}-%{_snap}.tar.gz
-# Source0-md5:	080589e359c3f2f5793ccdb1a1ed1fa1
+Source0:	http://ekg.chmurka.net/%{name}-%{version}%{_snap}.tar.gz
+# Source0-md5:	b4ea482130e163af1456699e2e6983d9
 Source1:	%{name}.conf
 #Patch0:		%{name}-kadu-0_3_6.patch
 URL:		http://dev.null.pl/ekg/
@@ -124,7 +124,7 @@ Biblioteca libgadu estática.
 Statyczna biblioteka libgadu.
 
 %prep
-%setup -q -n %{name}-%{_snap}
+%setup -q -n %{name}-%{version}%{_snap}
 #%%patch0 -p1
 
 %build

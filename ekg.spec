@@ -8,10 +8,10 @@
 %bcond_with	lock_reason	# with lock_reason patch
 #
 Summary:	A client compatible with Gadu-Gadu
-Summary(de.UTF-8):   Ein Cliente kompatibel mit Gadu-Gadu
-Summary(es.UTF-8):   Un cliente compatible con Gadu-Gadu
-Summary(it.UTF-8):   Un cliente compatibile con Gadu-Gadu
-Summary(pl.UTF-8):   Klient kompatybilny z Gadu-Gadu
+Summary(de.UTF-8):	Ein Cliente kompatibel mit Gadu-Gadu
+Summary(es.UTF-8):	Un cliente compatible con Gadu-Gadu
+Summary(it.UTF-8):	Un cliente compatibile con Gadu-Gadu
+Summary(pl.UTF-8):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.6
 Release:	4
@@ -89,8 +89,8 @@ polsku (jednak komendy są w języku angielskim).
 
 %package -n libgadu
 Summary:	libgadu library
-Summary(es.UTF-8):   Biblioteca libgadu
-Summary(pl.UTF-8):   Biblioteka libgadu
+Summary(es.UTF-8):	Biblioteca libgadu
+Summary(pl.UTF-8):	Biblioteka libgadu
 License:	LGPL v2.1
 Group:		Libraries
 Obsoletes:	libgg
@@ -113,8 +113,8 @@ bazującej na protokole Gadu-Gadu.
 
 %package -n libgadu-devel
 Summary:	libgadu development library
-Summary(es.UTF-8):   Biblioteca de desarrollo de libgadu
-Summary(pl.UTF-8):   Część biblioteki libgadu dla programistów
+Summary(es.UTF-8):	Biblioteca de desarrollo de libgadu
+Summary(pl.UTF-8):	Część biblioteki libgadu dla programistów
 License:	LGPL v2.1
 Group:		Development/Libraries
 Requires:	libgadu = %{epoch}:%{version}-%{release}
@@ -141,8 +141,8 @@ potrzebne do kompilowania aplikacji korzystających z libgadu.
 
 %package -n libgadu-static
 Summary:	Static libgadu library
-Summary(es.UTF-8):   Biblioteca libgadu estática
-Summary(pl.UTF-8):   Statyczna biblioteka libgadu
+Summary(es.UTF-8):	Biblioteca libgadu estática
+Summary(pl.UTF-8):	Statyczna biblioteka libgadu
 License:	LGPL v2.1
 Group:		Development/Libraries
 Requires:	libgadu-devel = %{epoch}:%{version}-%{release}

@@ -6,10 +6,10 @@
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
 #
 Summary:	A client compatible with Gadu-Gadu
-Summary(de):	Ein Cliente kompatibel mit Gadu-Gadu
-Summary(es):	Un cliente compatible con Gadu-Gadu
-Summary(it):	Un cliente compatibile con Gadu-Gadu
-Summary(pl):	Klient kompatybilny z Gadu-Gadu
+Summary(de.UTF-8):   Ein Cliente kompatibel mit Gadu-Gadu
+Summary(es.UTF-8):   Un cliente compatible con Gadu-Gadu
+Summary(it.UTF-8):   Un cliente compatibile con Gadu-Gadu
+Summary(pl.UTF-8):   Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.7
 %define _snap rc2
@@ -38,22 +38,22 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 A client compatible with Gadu-Gadu.
 
-%description -l de
+%description -l de.UTF-8
 Ein Cliente kompatibel mit Gadu-Gadu.
 
-%description -l es
+%description -l es.UTF-8
 Un cliente compatible con Gadu-Gadu.
 
-%description -l it
+%description -l it.UTF-8
 Un cliente compatibile con Gadu-Gadu.
 
-%description -l pl
+%description -l pl.UTF-8
 Klient kompatybilny z Gadu-Gadu.
 
 %package -n libgadu
 Summary:	libgadu library
-Summary(es):	Biblioteca libgadu
-Summary(pl):	Biblioteka libgadu
+Summary(es.UTF-8):   Biblioteca libgadu
+Summary(pl.UTF-8):   Biblioteka libgadu
 License:	LGPL v2.1
 Group:		Libraries
 Obsoletes:	libgg
@@ -62,22 +62,22 @@ Obsoletes:	libgg
 libgadu is intended to make it easy to add Gadu-Gadu communication
 support to your software.
 
-%description -n libgadu -l de
-Mit libgadu ist es Ihnen möglich auf einfache Weise Gadu-Gadu
-Kommunikations-Unterstützung in Ihre Software einzubinden.
+%description -n libgadu -l de.UTF-8
+Mit libgadu ist es Ihnen mÃ¶glich auf einfache Weise Gadu-Gadu
+Kommunikations-UnterstÃ¼tzung in Ihre Software einzubinden.
 
-%description -n libgadu -l es
-libgadu está pensada para facilitar añadirle comunicación vía
+%description -n libgadu -l es.UTF-8
+libgadu estÃ¡ pensada para facilitar aÃ±adirle comunicaciÃ³n vÃ­a
 Gadu-Gadu a su software.
 
-%description -n libgadu -l pl
-libgadu umo¿liwia ³atwe dodanie do ró¿nych aplikacji komunikacji
-bazuj±cej na protokole Gadu-Gadu.
+%description -n libgadu -l pl.UTF-8
+libgadu umoÅ¼liwia Å‚atwe dodanie do rÃ³Å¼nych aplikacji komunikacji
+bazujÄ…cej na protokole Gadu-Gadu.
 
 %package -n libgadu-devel
 Summary:	libgadu development library
-Summary(es):	Biblioteca de desarrollo de libgadu
-Summary(pl):	Czê¶æ biblioteki libgadu dla programistów
+Summary(es.UTF-8):   Biblioteca de desarrollo de libgadu
+Summary(pl.UTF-8):   CzÄ™Å›Ä‡ biblioteki libgadu dla programistÃ³w
 License:	LGPL v2.1
 Group:		Development/Libraries
 Requires:	libgadu = %{epoch}:%{version}-%{release}
@@ -88,24 +88,24 @@ Obsoletes:	libgg-devel
 The libgadu-devel package contains the header files and some
 documentation needed to develop application with libgadu.
 
-%description -n libgadu-devel -l de
-Das libgadu-devel Paket enthält Header-Files (Kopfzeilenordner) und
-die Dokumentation die Sie benötigen um mit libgadu Anwendungen zu
+%description -n libgadu-devel -l de.UTF-8
+Das libgadu-devel Paket enthÃ¤lt Header-Files (Kopfzeilenordner) und
+die Dokumentation die Sie benÃ¶tigen um mit libgadu Anwendungen zu
 entwickeln.
 
-%description -n libgadu-devel -l es
+%description -n libgadu-devel -l es.UTF-8
 El paquete libgadu-devel contiene los ficheros de cabecera, juntos con
-una documentación, necesarios para desarrollar aplicaciones que usar
+una documentaciÃ³n, necesarios para desarrollar aplicaciones que usar
 libgadu.
 
-%description -n libgadu-devel -l pl
-Pakiet libgadu-devel zawiera pliki nag³ówkowe i dokumentacjê,
-potrzebne do kompilowania aplikacji korzystaj±cych z libgadu.
+%description -n libgadu-devel -l pl.UTF-8
+Pakiet libgadu-devel zawiera pliki nagÅ‚Ã³wkowe i dokumentacjÄ™,
+potrzebne do kompilowania aplikacji korzystajÄ…cych z libgadu.
 
 %package -n libgadu-static
 Summary:	Static libgadu library
-Summary(es):	Biblioteca libgadu estática
-Summary(pl):	Statyczna biblioteka libgadu
+Summary(es.UTF-8):   Biblioteca libgadu estÃ¡tica
+Summary(pl.UTF-8):   Statyczna biblioteka libgadu
 License:	LGPL v2.1
 Group:		Development/Libraries
 Requires:	libgadu-devel = %{epoch}:%{version}-%{release}
@@ -114,13 +114,13 @@ Obsoletes:	libgg-static
 %description -n libgadu-static
 Static libgadu library.
 
-%description -n libgadu-static -l de
+%description -n libgadu-static -l de.UTF-8
 Statisches libgadu Archiv.
 
-%description -n libgadu-static -l es
-Biblioteca libgadu estática.
+%description -n libgadu-static -l es.UTF-8
+Biblioteca libgadu estÃ¡tica.
 
-%description -n libgadu-static -l pl
+%description -n libgadu-static -l pl.UTF-8
 Statyczna biblioteka libgadu.
 
 %prep

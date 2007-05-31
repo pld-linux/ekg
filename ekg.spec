@@ -13,13 +13,13 @@ Summary(es.UTF-8):	Un cliente compatible con Gadu-Gadu
 Summary(it.UTF-8):	Un cliente compatibile con Gadu-Gadu
 Summary(pl.UTF-8):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
-Version:	1.6
-Release:	4
+Version:	1.7
+Release:	1
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://ekg.chmurka.net/%{name}-%{version}.tar.gz
-# Source0-md5:	1094eee5062d9b9900c4b28bd68fb564
+# Source0-md5:	2aa92b56517fdf09d75519a105772b74
 Source1:	%{name}.conf
 Patch0:		%{name}-jpeg.patch
 Patch1:		%{name}-LDFLAGS.patch
@@ -162,8 +162,8 @@ Statyczna biblioteka libgadu.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+#%patch0 -p1
+#%patch1 -p1
 %if %{with lock_reason}
 %patch2 -p1
 %endif

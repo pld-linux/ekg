@@ -123,7 +123,7 @@
  ekg:	$(OBJS) comptime.c @libgadu_a@
  	$(CC) $(CFLAGS) -c -o comptime.o comptime.c
 -	$(CC) $(CFLAGS) -o ekg $(OBJS) comptime.o -L../lib @lgadu@ @libgadu_a@ $(LDFLAGS) $(LIBS)
-+	$(CC) $(LDFLAGS) $(CFLAGS) -o ekg $(OBJS) -L../lib @lgadu@ @libgadu_a@ $(LIBS)
++	$(CC) $(LDFLAGS) $(CFLAGS) -o ekg $(OBJS) comptime.o -L../lib @lgadu@ @libgadu_a@ $(LIBS)
  
  ioctld:	ioctld.c
 -	$(CC) $(CFLAGS) ioctld.c -o ioctld $(LIBS) @IOCTLD_OBJS@

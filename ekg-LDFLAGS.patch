@@ -1,16 +1,15 @@
-diff -Nur ekg-1.6.orig/configure.in ekg-1.6.LDFLAGS/configure.in
---- ekg-1.6.orig/configure.in	2005-05-03 02:55:21.000000000 +0200
-+++ ekg-1.6.LDFLAGS/configure.in	2006-08-04 16:31:59.000000000 +0200
-@@ -282,7 +282,7 @@
+--- configure.in	2007-03-11 13:27:04.000000000 +0100
++++ configure.in-new	2007-05-31 23:16:33.300670618 +0200
+@@ -292,7 +292,7 @@
  
  if test "x$have_openssl" = "xyes"; then
  	OBJS="$OBJS simlite.o"
 -	LDFLAGS="$OPENSSL_LIBS $LDFLAGS"
 +	LIBS="$OPENSSL_LIBS $LIBS"
- 	LIBS_LIBGADU="$LIBS_LIBGADU $OPENSSL_LIBS"
  	CFLAGS="$CFLAGS $OPENSSL_INCLUDES"
- 	CFLAGS_LIBGADU="$CFLAGS_LIBGADU $OPENSSL_INCLUDES"
-@@ -376,7 +376,7 @@
+ 	if test "x$enable_libgadu_openssl" != "xno"; then
+ 		LIBS_LIBGADU="$LIBS_LIBGADU $OPENSSL_LIBS"
+@@ -394,7 +394,7 @@
  		AC_MSG_ERROR([You need ncurses and ncurses-devel packages.])
  	fi
  
@@ -19,7 +18,7 @@ diff -Nur ekg-1.6.orig/configure.in ekg-1.6.LDFLAGS/configure.in
  	CFLAGS="$CFLAGS $CURSES_INCLUDES"
  	echo "CURSES_INCLUDES=$CURSES_INCLUDES"
  fi
-@@ -389,11 +389,11 @@
+@@ -407,11 +407,11 @@
  		TERMCAP_LIB=""
  	else
  		AC_CHECK_LIB(termcap, tgetent, [TERMCAP_LIB="-ltermcap"])
@@ -33,7 +32,7 @@ diff -Nur ekg-1.6.orig/configure.in ekg-1.6.LDFLAGS/configure.in
  		CFLAGS="$CFLAGS $CURSES_INCLUDES"
  	fi
       
-@@ -403,7 +403,7 @@
+@@ -421,7 +421,7 @@
  		AC_MSG_ERROR([You need both readline and readline-devel packages.])
  	fi
  
@@ -42,7 +41,7 @@ diff -Nur ekg-1.6.orig/configure.in ekg-1.6.LDFLAGS/configure.in
  	CFLAGS="$CFLAGS $READLINE_INCLUDES"
  
  	AC_CHECK_FUNCS([rl_set_prompt rl_filename_completion_function rl_get_screen_size rl_set_key rl_bind_key_in_map])
-@@ -435,7 +435,7 @@
+@@ -453,7 +453,7 @@
  		AC_CHECK_HEADERS(linux/soundcard.h,
  		[
  			AC_DEFINE(HAVE_VOIP, 1, [define if you want VOIP support])
@@ -51,7 +50,16 @@ diff -Nur ekg-1.6.orig/configure.in ekg-1.6.LDFLAGS/configure.in
  			OBJS="$OBJS voice.o"
  		])
  	fi
-@@ -454,7 +454,7 @@
+@@ -472,7 +472,7 @@
+ 		AC_CHECK_HEADERS(gif_lib.h,
+ 		[
+ 			AC_DEFINE(HAVE_LIBUNGIF, 1, [define if you have libungif])
+-			LDFLAGS="-lungif $LDFLAGS"
++			LIBS="-lungif $LIBS"
+ 			have_libungif=yes
+ 		])
+ 	])
+@@ -491,7 +491,7 @@
  		AC_CHECK_HEADERS(jpeglib.h,
  		[
  			AC_DEFINE(HAVE_LIBJPEG, 1, [define if you have libjpeg])
@@ -60,7 +68,7 @@ diff -Nur ekg-1.6.orig/configure.in ekg-1.6.LDFLAGS/configure.in
  			have_libjpeg=yes
  		])
  	])
-@@ -468,7 +468,7 @@
+@@ -505,7 +505,7 @@
    
  if test "x$have_python" = "xyes"; then
  	OBJS="$OBJS python.o"
@@ -69,7 +77,7 @@ diff -Nur ekg-1.6.orig/configure.in ekg-1.6.LDFLAGS/configure.in
  	CFLAGS="$CFLAGS $PYTHON_INCLUDES"
  fi
  
-@@ -485,7 +485,7 @@
+@@ -522,7 +522,7 @@
  		AC_CHECK_HEADERS(zlib.h,
  		[
  			AC_DEFINE(HAVE_ZLIB, 1, [define if you want compressed logs])
@@ -78,22 +86,21 @@ diff -Nur ekg-1.6.orig/configure.in ekg-1.6.LDFLAGS/configure.in
  			have_zlib=yes
  		])
  	])
-@@ -529,7 +529,7 @@
+@@ -566,7 +566,7 @@
   	    if test "x$have_aspell_libs" = "xyes"; then
  		if test "x$ui_ncurses_default" = "xyes"; then    
   		    AC_DEFINE(WITH_ASPELL, 1, [define if you want aspell support])
 - 		    LDFLAGS="$LDFLAGS -laspell"		
-+ 		    LIBS="$LIBS -laspell"		
++		    LIBS="$LIBS -laspell"
  		fi
  	    else 
  	        enable_aspell=no
-diff -Nur ekg-1.6.orig/lib/Makefile.in ekg-1.6.LDFLAGS/lib/Makefile.in
---- ekg-1.6.orig/lib/Makefile.in	2005-06-25 08:41:07.000000000 +0200
-+++ ekg-1.6.LDFLAGS/lib/Makefile.in	2006-08-04 16:32:35.000000000 +0200
+--- lib/Makefile.in	2006-04-18 21:05:11.000000000 +0200
++++ lib/Makefile.in-new	2007-05-31 23:18:35.346799383 +0200
 @@ -12,7 +12,8 @@
  
  CC = @CC@ 
- CFLAGS = @CFLAGS_LIBGADU@ -I. -I.. -Wall
+ CFLAGS = @CFLAGS_LIBGADU@ -I. -I..
 -LIBS = @LIBS_LIBGADU@
 +LDFLAGS = @LDFLAGS@
 +LIBS = @LIBS@ @LIBS_LIBGADU@
@@ -109,14 +116,13 @@ diff -Nur ekg-1.6.orig/lib/Makefile.in ekg-1.6.LDFLAGS/lib/Makefile.in
  	$(LN_S) -f $(SHARED) $(SHAREDM)
  	$(LN_S) -f $(SHARED) $(SHAREDMM)
  
-diff -Nur ekg-1.6.orig/src/Makefile.in ekg-1.6.LDFLAGS/src/Makefile.in
---- ekg-1.6.orig/src/Makefile.in	2003-05-19 15:36:41.000000000 +0200
-+++ ekg-1.6.LDFLAGS/src/Makefile.in	2006-08-04 16:33:31.000000000 +0200
-@@ -26,10 +26,10 @@
- all:	dep ekg @ioctld@
+--- src/Makefile.in	2007-04-28 22:02:22.000000000 +0200
++++ src/Makefile.in-new	2007-05-31 23:20:07.254747976 +0200
+@@ -28,10 +28,10 @@
  
- ekg:	$(OBJS) @libgadu_a@
--	$(CC) $(CFLAGS) -o ekg $(OBJS) -L../lib @lgadu@ @libgadu_a@ $(LDFLAGS) $(LIBS)
+ ekg:	$(OBJS) comptime.c @libgadu_a@
+ 	$(CC) $(CFLAGS) -c -o comptime.o comptime.c
+-	$(CC) $(CFLAGS) -o ekg $(OBJS) comptime.o -L../lib @lgadu@ @libgadu_a@ $(LDFLAGS) $(LIBS)
 +	$(CC) $(LDFLAGS) $(CFLAGS) -o ekg $(OBJS) -L../lib @lgadu@ @libgadu_a@ $(LIBS)
  
  ioctld:	ioctld.c

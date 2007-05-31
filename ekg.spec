@@ -21,9 +21,8 @@ Group:		Applications/Communications
 Source0:	http://ekg.chmurka.net/%{name}-%{version}.tar.gz
 # Source0-md5:	2aa92b56517fdf09d75519a105772b74
 Source1:	%{name}.conf
-Patch0:		%{name}-jpeg.patch
-Patch1:		%{name}-LDFLAGS.patch
-Patch2:		%{name}-lock_reason.patch
+Patch0:		%{name}-LDFLAGS.patch
+Patch1:		%{name}-lock_reason.patch
 URL:		http://ekg.chmurka.net/
 BuildRequires:	%{_bindir}/perl
 %{?with_aspell:BuildRequires:	aspell-devel}
@@ -162,10 +161,9 @@ Statyczna biblioteka libgadu.
 
 %prep
 %setup -q
-#%patch0 -p1
-#%patch1 -p1
+%patch0 -p0
 %if %{with lock_reason}
-%patch2 -p1
+%patch1 -p1
 %endif
 
 %build

@@ -14,7 +14,7 @@ Summary(it.UTF-8):	Un cliente compatibile con Gadu-Gadu
 Summary(pl.UTF-8):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.7
-Release:	2
+Release:	3
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
@@ -38,7 +38,7 @@ BuildRequires:	python-devel
 %endif
 BuildRequires:	readline-devel
 BuildRequires:	zlib-devel
-Requires:	libgadu = %{epoch}:%{version}-%{release}
+Requires:	libgadu >= %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description

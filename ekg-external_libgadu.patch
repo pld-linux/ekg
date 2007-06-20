@@ -1,0 +1,292 @@
+diff -Nur src.orig/commands.c src/commands.c
+--- src.orig/commands.c	2007-06-20 10:25:16.349058035 +0200
++++ src/commands.c	2007-06-20 10:25:32.489857094 +0200
+@@ -52,7 +52,7 @@
+ #include "configfile.h"
+ #include "dynstuff.h"
+ #include "events.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "log.h"
+ #include "msgqueue.h"
+ #ifdef HAVE_OPENSSL
+diff -Nur src.orig/dynstuff.c src/dynstuff.c
+--- src.orig/dynstuff.c	2007-06-20 10:25:16.349058035 +0200
++++ src/dynstuff.c	2007-06-20 10:25:32.499857589 +0200
+@@ -24,7 +24,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ 
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "dynstuff.h"
+ #include "stuff.h"
+ #include "xmalloc.h"
+diff -Nur src.orig/ekg.c src/ekg.c
+--- src.orig/ekg.c	2007-06-20 10:25:16.349058035 +0200
++++ src/ekg.c	2007-06-20 10:25:32.506524586 +0200
+@@ -60,7 +60,7 @@
+ #include "configfile.h"
+ #include "emoticons.h"
+ #include "events.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "log.h"
+ #include "mail.h"
+ #include "msgqueue.h"
+diff -Nur src.orig/events.c src/events.c
+--- src.orig/events.c	2007-06-20 10:25:16.352391533 +0200
++++ src/events.c	2007-06-20 10:25:32.519858579 +0200
+@@ -40,7 +40,7 @@
+ #include "commands.h"
+ #include "emoticons.h"
+ #include "events.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "log.h"
+ #include "msgqueue.h"
+ #ifdef HAVE_OPENSSL
+diff -Nur src.orig/events.h src/events.h
+--- src.orig/events.h	2007-06-20 10:25:16.345724537 +0200
++++ src/events.h	2007-06-20 10:25:32.519858579 +0200
+@@ -21,7 +21,7 @@
+ #ifndef __EVENTS_H
+ #define __EVENTS_H
+ 
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "userlist.h"
+ 
+ struct handler {
+diff -Nur src.orig/log.h src/log.h
+--- src.orig/log.h	2007-06-20 10:25:16.349058035 +0200
++++ src/log.h	2007-06-20 10:25:32.526525576 +0200
+@@ -28,7 +28,7 @@
+ #include <time.h>
+ 
+ #include "dynstuff.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ 
+ struct last {
+ 	int type;		/* 0 - przychodz±ca, 1 - wychodz±ca */
+diff -Nur src.orig/msgqueue.c src/msgqueue.c
+--- src.orig/msgqueue.c	2007-06-20 10:25:16.349058035 +0200
++++ src/msgqueue.c	2007-06-20 10:25:32.529859074 +0200
+@@ -32,7 +32,7 @@
+ #include <unistd.h>
+ 
+ #include "dynstuff.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "msgqueue.h"
+ #include "stuff.h"
+ #include "xmalloc.h"
+diff -Nur src.orig/msgqueue.h src/msgqueue.h
+--- src.orig/msgqueue.h	2007-06-20 10:25:16.352391533 +0200
++++ src/msgqueue.h	2007-06-20 10:25:32.529859074 +0200
+@@ -25,7 +25,7 @@
+ #include <time.h>
+ 
+ #include "dynstuff.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ 
+ struct msg_queue {
+ 	int msg_class;
+diff -Nur src.orig/python.c src/python.c
+--- src.orig/python.c	2007-06-20 10:25:16.352391533 +0200
++++ src/python.c	2007-06-20 10:25:32.533192573 +0200
+@@ -27,7 +27,7 @@
+ #include <string.h>
+ 
+ #include "commands.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "stuff.h"
+ #include "themes.h"
+ #include "ui.h"
+diff -Nur src.orig/simlite.c src/simlite.c
+--- src.orig/simlite.c	2007-06-20 10:25:16.349058035 +0200
++++ src/simlite.c	2007-06-20 10:25:32.536526071 +0200
+@@ -35,7 +35,7 @@
+ #include <string.h>
+ #include <time.h>
+ 
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "simlite.h"
+ 
+ #ifndef PATH_MAX
+diff -Nur src.orig/stuff.c src/stuff.c
+--- src.orig/stuff.c	2007-06-20 10:25:16.352391533 +0200
++++ src/stuff.c	2007-06-20 10:25:32.549860065 +0200
+@@ -55,7 +55,7 @@
+ #include "commands.h"
+ #include "compat.h"
+ #include "dynstuff.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ #ifdef HAVE_OPENSSL
+ #  include "simlite.h"
+ #endif
+diff -Nur src.orig/stuff.h src/stuff.h
+--- src.orig/stuff.h	2007-06-20 10:25:16.349058035 +0200
++++ src/stuff.h	2007-06-20 10:25:32.553193563 +0200
+@@ -35,7 +35,7 @@
+ #include <time.h>
+ 
+ #include "dynstuff.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "ioctld.h"
+ 
+ #define DEBUG_MAX_LINES	50	/* ile linii z debug zrzucaæ do pliku */
+diff -Nur src.orig/ui-ncurses.c src/ui-ncurses.c
+--- src.orig/ui-ncurses.c	2007-06-20 10:25:16.345724537 +0200
++++ src/ui-ncurses.c	2007-06-20 10:25:32.583195048 +0200
+@@ -66,7 +66,7 @@
+ #include <unistd.h>
+ 
+ #include "commands.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "mail.h"
+ #ifndef HAVE_STRLCAT
+ #  include "../compat/strlcat.h"
+diff -Nur src.orig/userlist.c src/userlist.c
+--- src.orig/userlist.c	2007-06-20 10:25:16.349058035 +0200
++++ src/userlist.c	2007-06-20 10:25:32.593195543 +0200
+@@ -38,7 +38,7 @@
+ 
+ #include "commands.h"
+ #include "dynstuff.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ #ifndef HAVE_STRLCAT
+ #  include "../compat/strlcat.h"
+ #endif
+diff -Nur src.orig/userlist.h src/userlist.h
+--- src.orig/userlist.h	2007-06-20 10:25:16.345724537 +0200
++++ src/userlist.h	2007-06-20 10:25:32.596529042 +0200
+@@ -30,7 +30,7 @@
+ #include <stdio.h>
+ #include <time.h>
+ 
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "dynstuff.h"
+ #include "stuff.h"
+ 
+diff -Nur src.orig/vars.c src/vars.c
+--- src.orig/vars.c	2007-06-20 10:25:16.345724537 +0200
++++ src/vars.c	2007-06-20 10:25:32.599862540 +0200
+@@ -28,7 +28,7 @@
+ #include <unistd.h>
+ 
+ #include "dynstuff.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "mail.h"
+ #ifndef HAVE_STRLCAT
+ #  include "../compat/strlcat.h"
+diff -Nur src.orig/voice.c src/voice.c
+--- src.orig/voice.c	2007-06-20 10:25:16.349058035 +0200
++++ src/voice.c	2007-06-20 10:25:32.603196038 +0200
+@@ -29,7 +29,7 @@
+ #include <stdlib.h>
+ #include <unistd.h>
+ 
+-#include "libgadu.h"
++#include <libgadu.h>
+ #include "voice.h"
+ #include "stuff.h"
+ #include "xmalloc.h"
+diff -Nur src.orig/xmalloc.c src/xmalloc.c
+--- src.orig/xmalloc.c	2007-06-20 10:25:16.345724537 +0200
++++ src/xmalloc.c	2007-06-20 10:25:32.603196038 +0200
+@@ -28,7 +28,7 @@
+ #include "configfile.h"
+ #include "stuff.h"
+ #include "userlist.h"
+-#include "libgadu.h"
++#include <libgadu.h>
+ 
+ void ekg_oom_handler()
+ {
+--- src/Makefile.in	2007-06-20 10:30:09.886922984 +0200
++++ src/Makefile.in-new	2007-06-20 10:33:36.693827460 +0200
+@@ -28,7 +28,7 @@
+ 
+ ekg:	$(OBJS) comptime.c @libgadu_a@
+ 	$(CC) $(CFLAGS) -c -o comptime.o comptime.c
+-	$(CC) $(LDFLAGS) $(CFLAGS) -o ekg $(OBJS) comptime.o -L../lib @lgadu@ @libgadu_a@ $(LIBS)
++	$(CC) $(LDFLAGS) $(CFLAGS) -o ekg $(OBJS) comptime.o @lgadu@ @libgadu_a@ $(LIBS)
+ 
+ ioctld:	ioctld.c
+ 	$(CC) $(LDFLAGS) $(CFLAGS) ioctld.c -o ioctld $(LIBS) @IOCTLD_OBJS@
+--- Makefile.in	2006-08-05 17:46:21.000000000 +0200
++++ Makefile.in-new	2007-06-20 10:43:18.322620629 +0200
+@@ -15,10 +15,7 @@
+ 
+ #
+ 
+-all:	configure libgadu @ekg@ @make_ekgwap@
+-
+-libgadu:
+-	cd lib && $(MAKE) all
++all:	configure @ekg@ @make_ekgwap@
+ 
+ ekg:	
+ 	cd src && $(MAKE) all
+@@ -31,10 +28,7 @@
+ 
+ #
+ 
+-dep:	dep-libgadu @dep_ekg@
+-
+-dep-libgadu:
+-	cd lib && $(MAKE) dep
++dep:	@dep_ekg@
+ 
+ dep-ekg:
+ 	cd src && $(MAKE) dep
+@@ -46,10 +40,7 @@
+ 
+ #
+ 
+-install:	all install-libgadu @install_ekg@ @install_ekgwap@
+-
+-install-libgadu:
+-	cd lib && $(MAKE) install
++install:	all @install_ekg@ @install_ekgwap@
+ 
+ install-ekg:	install-ekg-data install-ekg-man
+ 	cd src && $(MAKE) install
+@@ -93,10 +84,7 @@
+ 
+ #
+ 
+-clean:	clean-libgadu @clean_ekg@ clean-examples clean-compat
+-
+-clean-libgadu:
+-	cd lib && $(MAKE) clean
++clean:	@clean_ekg@ clean-examples clean-compat
+ 
+ clean-ekg:
+ 	cd src && $(MAKE) clean
+@@ -109,13 +97,10 @@
+ 
+ #
+ 
+-distclean:	distclean-libgadu @distclean_ekg@ distclean-examples distclean-compat
++distclean:	@distclean_ekg@ distclean-examples distclean-compat
+ 	rm -f *~ config.log config.cache config.status config.h Makefile
+ 	rm -f config.h.in configure aclocal.m4
+ 
+-distclean-libgadu:
+-	cd lib && $(MAKE) distclean
+-
+ distclean-ekg:
+ 	cd src && $(MAKE) distclean
+ 

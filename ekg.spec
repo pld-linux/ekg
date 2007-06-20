@@ -40,6 +40,7 @@ BuildRequires:	python-devel
 %endif
 BuildRequires:	readline-devel
 BuildRequires:	zlib-devel
+Requires:	libgadu >= 4:1.7.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description

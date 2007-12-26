@@ -48,9 +48,9 @@ diff -burN ekg-1.6.orig/src/commands.c ekg-1.6/src/commands.c
  
 -			if (config_reason) {
 +			if (config_reason && !config_lock_reason) {
- 				iso_to_cp((unsigned char *) config_reason);
+ 				iso_to_cp(config_reason);
  				gg_change_status_descr(sess, config_status, config_reason);
- 				cp_to_iso((unsigned char *) config_reason);
+ 				cp_to_iso(config_reason);
 diff -burN ekg-1.6.orig/src/stuff.c ekg-1.6/src/stuff.c
 --- ekg-1.6.orig/src/stuff.c	2006-08-18 00:20:55.000000000 +0200
 +++ ekg-1.6/src/stuff.c	2006-08-18 00:35:53.000000000 +0200

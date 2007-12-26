@@ -95,14 +95,35 @@
  		fi
  	    else 
  	        enable_aspell=no
+--- lib/Makefile.in	2006-04-18 21:05:11.000000000 +0200
++++ lib/Makefile.in-new	2007-05-31 23:18:35.346799383 +0200
+@@ -12,7 +12,8 @@
+ 
+ CC = @CC@ 
+ CFLAGS = @CFLAGS_LIBGADU@ -I. -I..
+-LIBS = @LIBS_LIBGADU@
++LDFLAGS = @LDFLAGS@
++LIBS = @LIBS@ @LIBS_LIBGADU@
+ 
+ MAKE = @MAKE@
+ AR = @AR@
+@@ -56,7 +57,7 @@
+ shared:	dep $(SHARED)
+ 
+ $(SHARED): $(LOBJS)
+-	$(CC) -shared -Wl,-soname,libgadu.so.$(VERSION_MAJOR) -o $(SHARED) $(LOBJS) $(LIBS) -lc
++	$(CC) $(LDFLAGS) -shared -Wl,-soname,libgadu.so.$(VERSION_MAJOR) -o $(SHARED) $(LOBJS) $(LIBS) -lc
+ 	$(LN_S) -f $(SHARED) $(SHAREDM)
+ 	$(LN_S) -f $(SHARED) $(SHAREDMM)
+ 
 --- src/Makefile.in	2007-04-28 22:02:22.000000000 +0200
 +++ src/Makefile.in-new	2007-05-31 23:20:07.254747976 +0200
 @@ -28,10 +28,10 @@
  
- ekg:	$(OBJS) comptime.c
+ ekg:	$(OBJS) comptime.c @libgadu_a@
  	$(CC) $(CFLAGS) -c -o comptime.o comptime.c
--	$(CC) $(CFLAGS) -o ekg $(OBJS) comptime.o $(LDFLAGS) $(LIBS)
-+	$(CC) $(LDFLAGS) $(CFLAGS) -o ekg $(OBJS) comptime.o $(LIBS)
+-	$(CC) $(CFLAGS) -o ekg $(OBJS) comptime.o -L../lib @lgadu@ @libgadu_a@ $(LDFLAGS) $(LIBS)
++	$(CC) $(LDFLAGS) $(CFLAGS) -o ekg $(OBJS) comptime.o -L../lib @lgadu@ @libgadu_a@ $(LIBS)
  
  ioctld:	ioctld.c
 -	$(CC) $(CFLAGS) ioctld.c -o ioctld $(LIBS) @IOCTLD_OBJS@

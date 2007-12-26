@@ -214,3 +214,79 @@ diff -Nur src.orig/xmalloc.c src/xmalloc.c
  
  void ekg_oom_handler()
  {
+--- src/Makefile.in	2007-06-20 10:30:09.886922984 +0200
++++ src/Makefile.in-new	2007-06-20 10:33:36.693827460 +0200
+@@ -28,7 +28,7 @@
+ 
+ ekg:	$(OBJS) comptime.c @libgadu_a@
+ 	$(CC) $(CFLAGS) -c -o comptime.o comptime.c
+-	$(CC) $(LDFLAGS) $(CFLAGS) -o ekg $(OBJS) comptime.o -L../lib @lgadu@ @libgadu_a@ $(LIBS)
++	$(CC) $(LDFLAGS) $(CFLAGS) -o ekg $(OBJS) comptime.o @lgadu@ @libgadu_a@ $(LIBS)
+ 
+ ioctld:	ioctld.c
+ 	$(CC) $(LDFLAGS) $(CFLAGS) ioctld.c -o ioctld $(LIBS) @IOCTLD_OBJS@
+--- Makefile.in	2006-08-05 17:46:21.000000000 +0200
++++ Makefile.in-new	2007-06-20 10:43:18.322620629 +0200
+@@ -15,10 +15,7 @@
+ 
+ #
+ 
+-all:	configure libgadu @ekg@ @make_ekgwap@
+-
+-libgadu:
+-	cd lib && $(MAKE) all
++all:	configure @ekg@ @make_ekgwap@
+ 
+ ekg:	
+ 	cd src && $(MAKE) all
+@@ -31,10 +28,7 @@
+ 
+ #
+ 
+-dep:	dep-libgadu @dep_ekg@
+-
+-dep-libgadu:
+-	cd lib && $(MAKE) dep
++dep:	@dep_ekg@
+ 
+ dep-ekg:
+ 	cd src && $(MAKE) dep
+@@ -46,10 +40,7 @@
+ 
+ #
+ 
+-install:	all install-libgadu @install_ekg@ @install_ekgwap@
+-
+-install-libgadu:
+-	cd lib && $(MAKE) install
++install:	all @install_ekg@ @install_ekgwap@
+ 
+ install-ekg:	install-ekg-data install-ekg-man
+ 	cd src && $(MAKE) install
+@@ -93,10 +84,7 @@
+ 
+ #
+ 
+-clean:	clean-libgadu @clean_ekg@ clean-examples clean-compat
+-
+-clean-libgadu:
+-	cd lib && $(MAKE) clean
++clean:	@clean_ekg@ clean-examples clean-compat
+ 
+ clean-ekg:
+ 	cd src && $(MAKE) clean
+@@ -109,13 +97,10 @@
+ 
+ #
+ 
+-distclean:	distclean-libgadu @distclean_ekg@ distclean-examples distclean-compat
++distclean:	@distclean_ekg@ distclean-examples distclean-compat
+ 	rm -f *~ config.log config.cache config.status config.h Makefile
+ 	rm -f config.h.in configure aclocal.m4
+ 
+-distclean-libgadu:
+-	cd lib && $(MAKE) distclean
+-
+ distclean-ekg:
+ 	cd src && $(MAKE) distclean
+ 

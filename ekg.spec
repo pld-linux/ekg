@@ -6,6 +6,7 @@
 %bcond_without	pthread		# build with Posix threads support
 %bcond_with	ioctl_daemon	# with ioctl_daemon (suid root)
 %bcond_with	lock_reason	# with lock_reason patch
+%bcond_with	gtk		# with gtk frontend
 #
 Summary:	A client compatible with Gadu-Gadu
 Summary(de.UTF-8):	Ein Cliente kompatibel mit Gadu-Gadu
@@ -13,13 +14,14 @@ Summary(es.UTF-8):	Un cliente compatible con Gadu-Gadu
 Summary(it.UTF-8):	Un cliente compatibile con Gadu-Gadu
 Summary(pl.UTF-8):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
+%define	snap	20071225
 Version:	1.7
-Release:	4
+Release:	4.%{snap}.1
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://ekg.chmurka.net/%{name}-%{version}.tar.gz
-# Source0-md5:	2aa92b56517fdf09d75519a105772b74
+Source0:	http://ekg.chmurka.net/%{name}-%{snap}.tar.gz
+# Source0-md5:	34b541bb6c58695dee2b9aea0a5d6d74
 Source1:	%{name}.conf
 Patch0:		%{name}-LDFLAGS.patch
 Patch1:		%{name}-lock_reason.patch
@@ -29,6 +31,7 @@ BuildRequires:	%{_bindir}/perl
 %{?with_aspell:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
+%{?with_gtk:BuildRequires: gtk+2-devel}
 BuildRequires:	libgadu-devel >= 4:1.7.0
 %{?with_voip:BuildRequires:	libgsm-devel}
 BuildRequires:	libjpeg-devel
@@ -89,7 +92,7 @@ Program nie jest umiędzynarodowiony i wszystkie komunikaty są po
 polsku (jednak komendy są w języku angielskim).
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{snap}
 %patch0 -p0
 %if %{with lock_reason}
 %patch1 -p1
@@ -114,7 +117,8 @@ polsku (jednak komendy są w języku angielskim).
 	%{?with_python:--with-python} \
 	%{!?with_voip:--without-libgsm} \
 	%{?with_aspell:--enable-aspell} \
-	%{?with_ioctl_daemon:--enable-ioctld}
+	%{?with_ioctl_daemon:--enable-ioctld} \
+	%{?with_gtk:--enable-ui-gtk}
 
 %{__make}
 

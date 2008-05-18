@@ -14,16 +14,16 @@ Summary(it.UTF-8):	Un cliente compatibile con Gadu-Gadu
 Summary(pl.UTF-8):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.7
-%define		snap 20071225
-Release:	4.20071225
+Release:	4
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://ekg.chmurka.net/%{name}-%{snap}.tar.gz
-# Source0-md5:	34b541bb6c58695dee2b9aea0a5d6d74
+Source0:	http://ekg.chmurka.net/%{name}-%{version}.tar.gz
+# Source0-md5:	2aa92b56517fdf09d75519a105772b74
 Source1:	%{name}.conf
 Patch0:		%{name}-LDFLAGS.patch
 Patch1:		%{name}-lock_reason.patch
+Patch2:		%{name}-external_libgadu.patch
 URL:		http://ekg.chmurka.net/
 BuildRequires:	%{_bindir}/perl
 %{?with_aspell:BuildRequires:	aspell-devel}
@@ -89,11 +89,12 @@ Program nie jest umiędzynarodowiony i wszystkie komunikaty są po
 polsku (jednak komendy są w języku angielskim).
 
 %prep
-%setup -q -n %{name}-%{snap}
+%setup -q
 %patch0 -p0
 %if %{with lock_reason}
 %patch1 -p1
 %endif
+%patch2 -p0
 
 %build
 %{__aclocal} -I m4

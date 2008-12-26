@@ -13,16 +13,17 @@ Summary(es.UTF-8):	Un cliente compatible con Gadu-Gadu
 Summary(it.UTF-8):	Un cliente compatibile con Gadu-Gadu
 Summary(pl.UTF-8):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
-Version:	1.8
-Release:	1.rc1.2
+Version:	1.7
+Release:	5
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://ekg.chmurka.net/%{name}-%{version}rc1.tar.gz
-# Source0-md5:	ae98f336a71f7aad446a3f620b672441
+Source0:	http://ekg.chmurka.net/%{name}-%{version}.tar.gz
+# Source0-md5:	2aa92b56517fdf09d75519a105772b74
 Source1:	%{name}.conf
 Patch0:		%{name}-LDFLAGS.patch
 Patch1:		%{name}-lock_reason.patch
+Patch2:		%{name}-external_libgadu.patch
 URL:		http://ekg.chmurka.net/
 BuildRequires:	%{_bindir}/perl
 %{?with_aspell:BuildRequires:	aspell-devel}
@@ -88,11 +89,12 @@ Program nie jest umiędzynarodowiony i wszystkie komunikaty są po
 polsku (jednak komendy są w języku angielskim).
 
 %prep
-%setup -q -n %{name}-%{version}rc1
+%setup -q
 %patch0 -p0
 %if %{with lock_reason}
 %patch1 -p1
 %endif
+%patch2 -p0
 
 %build
 %{__aclocal} -I m4
@@ -109,7 +111,6 @@ polsku (jednak komendy są w języku angielskim).
 	--without-pthread \
 %endif
 	--without-bind \
-	--disable-ui-gtk \
 	%{?with_python:--with-python} \
 	%{!?with_voip:--without-libgsm} \
 	%{?with_aspell:--enable-aspell} \
@@ -144,7 +145,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/{files,gdb,python,sim,themes,ui-ncurses,vars,voip}.txt
+%doc docs/{7thguard,dcc,files,gdb,python,sim,themes,ui-ncurses,vars,voip}.txt
 %{?with_aspell:%doc docs/slownik.txt}
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
 %attr(755,root,root) %{_bindir}/e*

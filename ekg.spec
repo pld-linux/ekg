@@ -34,9 +34,11 @@ BuildRequires:	libgadu-devel >= 4:1.7.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	pkgconfig
 %if %{with python}
 BuildRequires:	python
 BuildRequires:	python-devel
+BuildRequires:	python-modules
 %endif
 BuildRequires:	readline-devel
 BuildRequires:	zlib-devel

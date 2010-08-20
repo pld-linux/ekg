@@ -14,7 +14,7 @@ Summary(it.UTF-8):	Un cliente compatibile con Gadu-Gadu
 Summary(pl.UTF-8):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.7
-Release:	8
+Release:	9
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
@@ -97,6 +97,10 @@ polsku (jednak komendy są w języku angielskim).
 %patch1 -p1
 %endif
 %patch2 -p0
+
+# /usr/bin/ld: ui-ncurses.o: undefined reference to symbol 'nodelay'
+# /usr/bin/ld: note: 'nodelay' is defined in DSO /lib64/libtinfo.so.5 so try adding it to the linker command line
+sed -i -e 's/-lncurses/-lncurses -ltinfo/' m4/curses.m4
 
 %build
 %{__aclocal} -I m4

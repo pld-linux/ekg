@@ -14,7 +14,7 @@ Summary(it.UTF-8):	Un cliente compatibile con Gadu-Gadu
 Summary(pl.UTF-8):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.7
-Release:	10
+Release:	11
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications

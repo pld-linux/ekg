@@ -98,10 +98,6 @@ polsku (jednak komendy są w języku angielskim).
 %endif
 %patch2 -p0
 
-# /usr/bin/ld: ui-ncurses.o: undefined reference to symbol 'nodelay'
-# /usr/bin/ld: note: 'nodelay' is defined in DSO /lib64/libtinfo.so.5 so try adding it to the linker command line
-sed -i -e 's/-lncurses/-lncurses -ltinfo/' m4/curses.m4
-
 %build
 %{__aclocal} -I m4
 %{__autoheader}

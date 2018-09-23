@@ -14,7 +14,7 @@ Summary(it.UTF-8):	Un cliente compatibile con Gadu-Gadu
 Summary(pl.UTF-8):	Klient kompatybilny z Gadu-Gadu
 Name:		ekg
 Version:	1.7
-Release:	15
+Release:	16
 Epoch:		4
 License:	GPL v2
 Group:		Applications/Communications
@@ -25,6 +25,7 @@ Patch0:		%{name}-LDFLAGS.patch
 Patch1:		%{name}-lock_reason.patch
 Patch2:		%{name}-external_libgadu.patch
 Patch3:		%{name}-giflib.patch
+Patch4:		%{name}-openssl.patch
 URL:		http://ekg.chmurka.net/
 BuildRequires:	%{_bindir}/perl
 %{?with_aspell:BuildRequires:	aspell-devel}
@@ -100,6 +101,7 @@ polsku (jednak komendy są w języku angielskim).
 %endif
 %patch2 -p0
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__aclocal} -I m4

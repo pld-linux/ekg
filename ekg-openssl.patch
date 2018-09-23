@@ -1,0 +1,30 @@
+--- ekg-1.7/src/simlite.c.orig	2018-09-23 16:27:02.621928366 +0200
++++ ekg-1.7/src/simlite.c	2018-09-23 16:28:33.260028046 +0200
+@@ -180,7 +180,7 @@
+ 	RSA *key = sim_key_read(uin);
+ 	unsigned char md_value[EVP_MAX_MD_SIZE], *buf, *newbuf;
+ 	char *result = NULL;
+-	EVP_MD_CTX ctx;
++	EVP_MD_CTX *ctx;
+ 	int md_len, size, i;
+ 
+ 	if (!key)
+@@ -200,10 +200,14 @@
+ 		size = i2d_RSAPublicKey(key, &newbuf);
+ 	else
+ 		size = i2d_RSAPrivateKey(key, &newbuf);
+-	
+-	EVP_DigestInit(&ctx, EVP_sha1());	
+-	EVP_DigestUpdate(&ctx, buf, size);
+-	EVP_DigestFinal(&ctx, md_value, &md_len);
++
++	ctx = EVP_MD_CTX_create();
++	if (!ctx)
++		return NULL;
++	EVP_DigestInit(ctx, EVP_sha1());	
++	EVP_DigestUpdate(ctx, buf, size);
++	EVP_DigestFinal(ctx, md_value, &md_len);
++	EVP_MD_CTX_free(ctx);
+ 
+ 	free(buf);
+ 

@@ -140,8 +140,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
 
 # For libgadu-devel
 
-rm -f examples/Makefile examples/Makefile.in examples/.cvsignore
-rm -rf examples/CVS
+%{__rm} examples/Makefile examples/Makefile.in examples/.cvsignore
+%{__rm} -r examples/CVS
 
 %if %{with ioctl_daemon}
 install src/ioctld $RPM_BUILD_ROOT%{_bindir}
@@ -155,9 +155,13 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/{7thguard,dcc,files,gdb,python,sim,themes,ui-ncurses,vars,voip}.txt
 %{?with_aspell:%doc docs/slownik.txt}
 %doc ChangeLog docs/{FAQ,README,TODO,ULOTKA} docs/emoticons.{ansi,sample}
-%attr(755,root,root) %{_bindir}/e*
+%attr(755,root,root) %{_bindir}/ekg
+%attr(755,root,root) %{_bindir}/ekl2.pl
+%attr(755,root,root) %{_bindir}/ekl2.sh
 %{?with_ioctl_daemon:%attr(4755,root,root) %{_bindir}/ioctld}
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ekg.conf
 %{_datadir}/ekg
-%{_mandir}/man1/*
-%lang(pl) %{_mandir}/pl/man1/*
+%{_mandir}/man1/ekg.1*
+%{_mandir}/man1/ekl2.1*
+%lang(pl) %{_mandir}/pl/man1/ekg.1*
+%lang(pl) %{_mandir}/pl/man1/ekl2.1*

@@ -95,13 +95,13 @@ polsku (jednak komendy są w języku angielskim).
 
 %prep
 %setup -q
-%patch0 -p0
+%patch -P0 -p0
 %if %{with lock_reason}
-%patch1 -p1
+%patch -P1 -p1
 %endif
-%patch2 -p0
-%patch3 -p1
-%patch4 -p1
+%patch -P2 -p0
+%patch -P3 -p1
+%patch -P4 -p1
 
 %build
 %{__aclocal} -I m4
